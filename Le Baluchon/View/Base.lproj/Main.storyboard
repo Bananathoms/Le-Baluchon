@@ -43,16 +43,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ba-DO-jO6">
-                                <rect key="frame" x="148" y="307" width="97" height="34"/>
+                                <rect key="frame" x="16" y="307" width="351" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Résultat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ty8-D2-qsV">
-                                <rect key="frame" x="16" y="484" width="361" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pqf-lU-Uy7">
                                 <rect key="frame" x="148" y="395" width="95" height="35"/>
                                 <state key="normal" title="Button"/>
@@ -61,27 +55,66 @@
                                     <action selector="convertTapped:" destination="gNv-YM-dYg" eventType="touchUpInside" id="9Lg-zc-gf0"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taux :" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHb-ed-fXa">
+                                <rect key="frame" x="11" y="228" width="361" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Devise : " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMI-aE-zfh">
+                                <rect key="frame" x="11" y="189" width="361" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date de mise à jour : " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQn-i8-UO1">
+                                <rect key="frame" x="11" y="257" width="361" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Résultat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ty8-D2-qsV">
+                                <rect key="frame" x="16" y="501" width="361" height="142"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="142" id="tms-G2-G2Z"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aKp-C2-lnl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Ty8-D2-qsV" firstAttribute="top" secondItem="pqf-lU-Uy7" secondAttribute="bottom" constant="54" id="2uo-Iq-RHm"/>
-                            <constraint firstItem="1ba-DO-jO6" firstAttribute="leading" secondItem="aKp-C2-lnl" secondAttribute="leading" constant="148" id="B8w-5L-ViG"/>
+                            <constraint firstItem="aKp-C2-lnl" firstAttribute="trailing" secondItem="NQn-i8-UO1" secondAttribute="trailing" constant="21" id="6cc-aQ-rbI"/>
+                            <constraint firstItem="LHb-ed-fXa" firstAttribute="leading" secondItem="aKp-C2-lnl" secondAttribute="leading" constant="11" id="ADL-Sp-xkf"/>
+                            <constraint firstItem="1ba-DO-jO6" firstAttribute="leading" secondItem="aKp-C2-lnl" secondAttribute="leading" constant="16" id="B8w-5L-ViG"/>
+                            <constraint firstItem="Ty8-D2-qsV" firstAttribute="leading" secondItem="aKp-C2-lnl" secondAttribute="leading" constant="16" id="DdG-SX-T6R"/>
                             <constraint firstItem="pqf-lU-Uy7" firstAttribute="leading" secondItem="aKp-C2-lnl" secondAttribute="leading" constant="148" id="E2p-IY-Wav"/>
-                            <constraint firstItem="aKp-C2-lnl" firstAttribute="trailing" secondItem="1ba-DO-jO6" secondAttribute="trailing" constant="148" id="F3H-q8-wR5"/>
+                            <constraint firstItem="aKp-C2-lnl" firstAttribute="trailing" secondItem="1ba-DO-jO6" secondAttribute="trailing" constant="26" id="F3H-q8-wR5"/>
+                            <constraint firstItem="aKp-C2-lnl" firstAttribute="trailing" secondItem="xMI-aE-zfh" secondAttribute="trailing" constant="21" id="GNz-7z-y3A"/>
+                            <constraint firstItem="LHb-ed-fXa" firstAttribute="top" secondItem="xMI-aE-zfh" secondAttribute="bottom" constant="18" id="Gog-6c-eaV"/>
+                            <constraint firstItem="xMI-aE-zfh" firstAttribute="leading" secondItem="aKp-C2-lnl" secondAttribute="leading" constant="11" id="IWt-Qv-Bfo"/>
+                            <constraint firstItem="NQn-i8-UO1" firstAttribute="top" secondItem="LHb-ed-fXa" secondAttribute="bottom" constant="8" symbolic="YES" id="Mym-KV-vqp"/>
                             <constraint firstItem="wb3-Em-POo" firstAttribute="top" secondItem="aKp-C2-lnl" secondAttribute="top" constant="10" id="NtN-yx-9wC"/>
                             <constraint firstItem="1ba-DO-jO6" firstAttribute="top" secondItem="wb3-Em-POo" secondAttribute="bottom" constant="217" id="Uqe-19-2da"/>
-                            <constraint firstItem="Ty8-D2-qsV" firstAttribute="leading" secondItem="aKp-C2-lnl" secondAttribute="leading" constant="165" id="bTD-mv-9Ja"/>
+                            <constraint firstItem="NQn-i8-UO1" firstAttribute="leading" secondItem="aKp-C2-lnl" secondAttribute="leading" constant="11" id="ah3-23-KWq"/>
                             <constraint firstItem="aKp-C2-lnl" firstAttribute="trailing" secondItem="pqf-lU-Uy7" secondAttribute="trailing" constant="150" id="cne-X5-eNH"/>
                             <constraint firstItem="pqf-lU-Uy7" firstAttribute="top" secondItem="1ba-DO-jO6" secondAttribute="bottom" constant="54" id="dS0-HT-x57"/>
                             <constraint firstItem="aKp-C2-lnl" firstAttribute="trailing" secondItem="wb3-Em-POo" secondAttribute="trailing" constant="137" id="ebX-QS-vQ4"/>
-                            <constraint firstItem="aKp-C2-lnl" firstAttribute="trailing" secondItem="Ty8-D2-qsV" secondAttribute="trailing" constant="166" id="nCj-Eg-tID"/>
+                            <constraint firstItem="Ty8-D2-qsV" firstAttribute="top" secondItem="pqf-lU-Uy7" secondAttribute="bottom" constant="71" id="n6K-tn-HHV"/>
+                            <constraint firstItem="aKp-C2-lnl" firstAttribute="trailing" secondItem="LHb-ed-fXa" secondAttribute="trailing" constant="21" id="vsC-ne-G4N"/>
+                            <constraint firstItem="xMI-aE-zfh" firstAttribute="top" secondItem="wb3-Em-POo" secondAttribute="bottom" constant="99" id="wQ8-JB-0e4"/>
                             <constraint firstItem="wb3-Em-POo" firstAttribute="leading" secondItem="aKp-C2-lnl" secondAttribute="leading" constant="136" id="xSy-eq-hKn"/>
+                            <constraint firstItem="aKp-C2-lnl" firstAttribute="trailing" secondItem="Ty8-D2-qsV" secondAttribute="trailing" constant="16" id="ziv-n8-UtK"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Taux de change" id="Rz5-7a-H8w"/>
                     <connections>
+                        <outlet property="labelBase" destination="xMI-aE-zfh" id="8id-gj-2Rb"/>
+                        <outlet property="labelRate" destination="LHb-ed-fXa" id="R6Z-cO-AgM"/>
                         <outlet property="labelResult" destination="Ty8-D2-qsV" id="oEK-wV-stQ"/>
+                        <outlet property="labeldate" destination="NQn-i8-UO1" id="BeJ-OK-wHO"/>
                         <outlet property="textFieldAmount" destination="1ba-DO-jO6" id="Fhb-CV-Jpi"/>
                     </connections>
                 </viewController>
