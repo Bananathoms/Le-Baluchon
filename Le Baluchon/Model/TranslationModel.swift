@@ -68,6 +68,6 @@ class TranslationModel {
             }
         }
         
-        task.resume()
+        task.resume() // Démarre la tâche de réseau.
     }
 }

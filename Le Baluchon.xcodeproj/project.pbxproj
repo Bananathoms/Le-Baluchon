@@ -20,6 +20,7 @@
 		DEDA8C942BB73E51003F5CF9 /* TranslationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8C932BB73E51003F5CF9 /* TranslationViewController.swift */; };
 		DEDA8C9A2BB79AD1003F5CF9 /* ExchangeRateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8C992BB79AD1003F5CF9 /* ExchangeRateModel.swift */; };
 		DEDA8C9C2BB8404C003F5CF9 /* TranslationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8C9B2BB8404C003F5CF9 /* TranslationModel.swift */; };
+		DEDA8C9E2BB84822003F5CF9 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8C9D2BB84822003F5CF9 /* WeatherModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		DEDA8C932BB73E51003F5CF9 /* TranslationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationViewController.swift; sourceTree = "<group>"; };
 		DEDA8C992BB79AD1003F5CF9 /* ExchangeRateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateModel.swift; sourceTree = "<group>"; };
 		DEDA8C9B2BB8404C003F5CF9 /* TranslationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationModel.swift; sourceTree = "<group>"; };
+		DEDA8C9D2BB84822003F5CF9 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 			children = (
 				DEDA8C992BB79AD1003F5CF9 /* ExchangeRateModel.swift */,
 				DEDA8C9B2BB8404C003F5CF9 /* TranslationModel.swift */,
+				DEDA8C9D2BB84822003F5CF9 /* WeatherModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				DEDA8C602BB731EF003F5CF9 /* SceneDelegate.swift in Sources */,
 				DEDA8C8E2BB734FD003F5CF9 /* ExchangeRateViewController.swift in Sources */,
 				DEDA8C9C2BB8404C003F5CF9 /* TranslationModel.swift in Sources */,
+				DEDA8C9E2BB84822003F5CF9 /* WeatherModel.swift in Sources */,
 				DEDA8C942BB73E51003F5CF9 /* TranslationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

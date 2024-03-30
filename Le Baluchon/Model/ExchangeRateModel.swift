@@ -64,7 +64,7 @@ class ExchangeRateModel {
                 completion(nil, nil, nil, error)
             }
         }
-        task.resume()
+        task.resume() // Démarre la tâche de réseau.
     }
 }
 
