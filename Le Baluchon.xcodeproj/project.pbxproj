@@ -9,13 +9,15 @@
 /* Begin PBXBuildFile section */
 		DEDA8C5E2BB731EF003F5CF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8C5D2BB731EF003F5CF9 /* AppDelegate.swift */; };
 		DEDA8C602BB731EF003F5CF9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8C5F2BB731EF003F5CF9 /* SceneDelegate.swift */; };
-		DEDA8C622BB731EF003F5CF9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8C612BB731EF003F5CF9 /* ViewController.swift */; };
 		DEDA8C652BB731EF003F5CF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEDA8C632BB731EF003F5CF9 /* Main.storyboard */; };
 		DEDA8C672BB731F2003F5CF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEDA8C662BB731F2003F5CF9 /* Assets.xcassets */; };
 		DEDA8C6A2BB731F2003F5CF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEDA8C682BB731F2003F5CF9 /* LaunchScreen.storyboard */; };
 		DEDA8C752BB731F2003F5CF9 /* Le_BaluchonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8C742BB731F2003F5CF9 /* Le_BaluchonTests.swift */; };
 		DEDA8C7F2BB731F2003F5CF9 /* Le_BaluchonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8C7E2BB731F2003F5CF9 /* Le_BaluchonUITests.swift */; };
 		DEDA8C812BB731F2003F5CF9 /* Le_BaluchonUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8C802BB731F2003F5CF9 /* Le_BaluchonUITestsLaunchTests.swift */; };
+		DEDA8C8E2BB734FD003F5CF9 /* ExchangeRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8C8D2BB734FD003F5CF9 /* ExchangeRateViewController.swift */; };
+		DEDA8C922BB73E2F003F5CF9 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8C912BB73E2F003F5CF9 /* WeatherViewController.swift */; };
+		DEDA8C942BB73E51003F5CF9 /* TranslationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8C932BB73E51003F5CF9 /* TranslationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +41,6 @@
 		DEDA8C5A2BB731EF003F5CF9 /* Le Baluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Le Baluchon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEDA8C5D2BB731EF003F5CF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DEDA8C5F2BB731EF003F5CF9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DEDA8C612BB731EF003F5CF9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DEDA8C642BB731EF003F5CF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DEDA8C662BB731F2003F5CF9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DEDA8C692BB731F2003F5CF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +50,9 @@
 		DEDA8C7A2BB731F2003F5CF9 /* Le BaluchonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Le BaluchonUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEDA8C7E2BB731F2003F5CF9 /* Le_BaluchonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Le_BaluchonUITests.swift; sourceTree = "<group>"; };
 		DEDA8C802BB731F2003F5CF9 /* Le_BaluchonUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Le_BaluchonUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DEDA8C8D2BB734FD003F5CF9 /* ExchangeRateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateViewController.swift; sourceTree = "<group>"; };
+		DEDA8C912BB73E2F003F5CF9 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		DEDA8C932BB73E51003F5CF9 /* TranslationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +105,10 @@
 			children = (
 				DEDA8C5D2BB731EF003F5CF9 /* AppDelegate.swift */,
 				DEDA8C5F2BB731EF003F5CF9 /* SceneDelegate.swift */,
-				DEDA8C612BB731EF003F5CF9 /* ViewController.swift */,
-				DEDA8C632BB731EF003F5CF9 /* Main.storyboard */,
+				DEDA8C8F2BB73621003F5CF9 /* View */,
+				DEDA8C902BB7362B003F5CF9 /* ViewController */,
+				DEDA8C972BB74675003F5CF9 /* Model */,
 				DEDA8C662BB731F2003F5CF9 /* Assets.xcassets */,
-				DEDA8C682BB731F2003F5CF9 /* LaunchScreen.storyboard */,
 				DEDA8C6B2BB731F2003F5CF9 /* Info.plist */,
 			);
 			path = "Le Baluchon";
@@ -125,6 +129,32 @@
 				DEDA8C802BB731F2003F5CF9 /* Le_BaluchonUITestsLaunchTests.swift */,
 			);
 			path = "Le BaluchonUITests";
+			sourceTree = "<group>";
+		};
+		DEDA8C8F2BB73621003F5CF9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DEDA8C682BB731F2003F5CF9 /* LaunchScreen.storyboard */,
+				DEDA8C632BB731EF003F5CF9 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DEDA8C902BB7362B003F5CF9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DEDA8C8D2BB734FD003F5CF9 /* ExchangeRateViewController.swift */,
+				DEDA8C912BB73E2F003F5CF9 /* WeatherViewController.swift */,
+				DEDA8C932BB73E51003F5CF9 /* TranslationViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DEDA8C972BB74675003F5CF9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,9 +288,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEDA8C622BB731EF003F5CF9 /* ViewController.swift in Sources */,
 				DEDA8C5E2BB731EF003F5CF9 /* AppDelegate.swift in Sources */,
+				DEDA8C922BB73E2F003F5CF9 /* WeatherViewController.swift in Sources */,
 				DEDA8C602BB731EF003F5CF9 /* SceneDelegate.swift in Sources */,
+				DEDA8C8E2BB734FD003F5CF9 /* ExchangeRateViewController.swift in Sources */,
+				DEDA8C942BB73E51003F5CF9 /* TranslationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
