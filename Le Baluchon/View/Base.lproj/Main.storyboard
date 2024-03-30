@@ -229,6 +229,9 @@
                                 <rect key="frame" x="153" y="409" width="87" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Traduire"/>
+                                <connections>
+                                    <action selector="translateButtonTapped:" destination="UY5-LL-ncq" eventType="touchUpInside" id="ma2-rD-sas"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vp9-AX-6AQ">
                                 <rect key="frame" x="16" y="185" width="361" height="34"/>
