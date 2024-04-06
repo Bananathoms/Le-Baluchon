@@ -12,43 +12,55 @@ class ExchangeRateService {
     // API key used to access the Fixer.io API.
     private let apiKey = "8ab60a4a125337ce98010667e48c33c3"
     private let baseUrl = "http://data.fixer.io/api/"
-    
+    var lastExchangeRate: ExchangeRate?
+
     /// Fetches the exchange rate between two currencies from the Fixer.io API and executes a completion closure with the results.
+    /// This method checks if the exchange rate for the same currencies was already fetched today. If so, it uses the cached rate.
     /// - Parameters:
     ///   - fromCurrency: The starting currency for which to obtain the exchange rate.
     ///   - toCurrency: The target currency for the conversion.
-    ///   - completion: A closure that is called with the exchange rate, base currency, the date of the last update, or an error if the request fails.
-    func fetchExchangeRate(fromCurrency: String, toCurrency: String, completion: @escaping (ExchangeRate?, Error?) -> Void) {
-        let urlString = "\(baseUrl)latest?access_key=\(apiKey)&symbols=\(toCurrency)"
+    ///   - completion: A closure that is called with the ExchangeRate object or an error if the request fails.
+    func fetchExchangeRateIfNeeded(fromCurrency: String, toCurrency: String, completion: @escaping (ExchangeRate?, Error?) -> Void) {
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         
-        // Checking the validity of the URL.
+        if let lastExchangeRate = lastExchangeRate,
+           dateFormatter.string(from: lastExchangeRate.date) == dateFormatter.string(from: currentDate),
+           lastExchangeRate.baseCurrency == fromCurrency, lastExchangeRate.targetCurrency == toCurrency {
+            completion(lastExchangeRate, nil)
+            return
+        }
+        
+        let urlString = "\(baseUrl)latest?access_key=\(apiKey)&base=\(fromCurrency)&symbols=\(toCurrency)"
         guard let url = URL(string: urlString) else {
-            completion(nil, NSError(domain: "ExchangeRateModel", code: 1, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"]))
+            completion(nil, NSError(domain: "ExchangeRateService", code: 1, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"]))
             return
         }
 
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            // Handling network request errors.
+        let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             if let error = error {
                 completion(nil, error)
                 return
             }
             
-            // Checking for data in the response.
             guard let data = data else {
-                completion(nil, NSError(domain: "ExchangeRateModel", code: 2, userInfo: [NSLocalizedDescriptionKey: "No data received"]))
+                completion(nil, NSError(domain: "ExchangeRateService", code: 2, userInfo: [NSLocalizedDescriptionKey: "No data received"]))
                 return
             }
             
-            // Attempting to decode the JSON response into the ExchangeRateResponse structure.
             do {
                 let decoder = JSONDecoder()
                 let decodedResponse = try decoder.decode(ExchangeRateResponse.self, from: data)
                 if let rate = decodedResponse.rates[toCurrency] {
-                    let exchangeRate = ExchangeRate(baseCurrency: decodedResponse.base, targetCurrency: toCurrency, rate: rate, date: decodedResponse.date)
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "yyyy-MM-dd"
+                    let rateDate = formatter.date(from: decodedResponse.date) ?? Date()
+                    let exchangeRate = ExchangeRate(baseCurrency: decodedResponse.base, targetCurrency: toCurrency, rate: rate, date: rateDate)
+                    self?.lastExchangeRate = exchangeRate
                     completion(exchangeRate, nil)
                 } else {
-                    completion(nil, NSError(domain: "ExchangeRateModel", code: 3, userInfo: [NSLocalizedDescriptionKey: "Rate not found for target currency"]))
+                    completion(nil, NSError(domain: "ExchangeRateService", code: 3, userInfo: [NSLocalizedDescriptionKey: "Rate not found for target currency"]))
                 }
             } catch {
                 completion(nil, error)
@@ -57,4 +69,5 @@ class ExchangeRateService {
         task.resume()
     }
 }
+
 

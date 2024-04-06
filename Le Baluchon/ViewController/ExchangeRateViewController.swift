@@ -9,7 +9,6 @@ import UIKit
 
 /// ViewController managing the display and conversion of exchange rates.
 class ExchangeRateViewController: UIViewController {
-   
     
     @IBOutlet weak var labelBase: UILabel!
     @IBOutlet weak var labelRate: UILabel!
@@ -17,14 +16,13 @@ class ExchangeRateViewController: UIViewController {
     @IBOutlet weak var textFieldAmount: UITextField!
     @IBOutlet weak var labelResult: UILabel!
     
-    var exchangeRateService = ExchangeRateService()
+    let exchangeRateService = ExchangeRateService()
     var currentRate: Double?
     
     /// Configures the ViewController after the view has loaded.
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadExchangeRate()
-
+        self.loadExchangeRate(fromCurrency: "EUR", toCurrency: "USD")
         
         // Adds a tap gesture recognizer to hide the keyboard when the user taps elsewhere on the screen.
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
@@ -37,43 +35,43 @@ class ExchangeRateViewController: UIViewController {
     }
     
     /// Loads the exchange rate data from the API and updates the UI accordingly.
-    func loadExchangeRate() {
-        self.exchangeRateService.fetchExchangeRate(fromCurrency: "EUR", toCurrency: "USD") { [weak self] (exchangeRate, error) in
+    func loadExchangeRate(fromCurrency: String, toCurrency: String) {
+        exchangeRateService.fetchExchangeRateIfNeeded(fromCurrency: fromCurrency, toCurrency: toCurrency) { [weak self] (exchangeRate, error) in
             DispatchQueue.main.async {
-                guard let self = self else { return }
-                
-                if let error = error {
-                    self.labelRate.text = "Error: \(error.localizedDescription)"
+                guard let self = self, let exchangeRate = exchangeRate else {
+                    self?.labelRate.text = "Error: \(error?.localizedDescription ?? "Unknown error")"
                     return
                 }
                 
-                guard let exchangeRate = exchangeRate else {
-                    self.labelRate.text = "Exchange rate not available."
-                    return
-                }
-                
-                // Update the current exchange rate.
-                self.currentRate = exchangeRate.rate
-                
-                self.labelBase.text = "Base currency: \(exchangeRate.baseCurrency)"
+                // Update the UI with the fetched exchange rate
+                self.labelBase.text = "Devise de base: \(exchangeRate.baseCurrency)"
                 self.labelRate.text = "1 \(exchangeRate.baseCurrency) = \(exchangeRate.rate) \(exchangeRate.targetCurrency)"
-                self.labeldate.text = "Last update: \(exchangeRate.date)"
+                // Here, assume you have a method to format the date into a string
+                self.labeldate.text = "Dernière mise à jour: \(self.formatDateToString(exchangeRate.date))"
             }
         }
     }
-
     
     /// Performs the conversion of the entered amount to the target currency and displays the result.
     /// - Parameter sender: The button triggering the conversion action.
     @IBAction func convertTapped(_ sender: UIButton) {
         // Checks the user input and the existence of an exchange rate.
-        guard let amountText = textFieldAmount.text, let amount = Double(amountText), let rate = currentRate else {
-            self.labelResult.text = "Entrée invalide ou taux de change non chargé"
+        guard let amountText = textFieldAmount.text,
+              let amount = Double(amountText),
+              let exchangeRate = exchangeRateService.lastExchangeRate else {
+            labelResult.text = "Entrée invalide ou taux de change non chargé"
             return
         }
-
+        
         // Performs the conversion with the current exchange rate and displays the result.
-        let convertedAmount = amount * rate
+        let convertedAmount = exchangeRate.convert(amount: amount)
         labelResult.text = String(format: "%.2f USD", convertedAmount)
+    }
+    
+    /// Helper method to format the Date object into a string for display.
+    private func formatDateToString(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter.string(from: date)
     }
 }

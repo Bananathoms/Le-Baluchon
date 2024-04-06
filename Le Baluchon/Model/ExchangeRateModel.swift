@@ -18,5 +18,27 @@ struct ExchangeRate {
     let baseCurrency: String
     let targetCurrency: String
     let rate: Double
-    let date: String
+    let date: Date
+}
+
+extension ExchangeRate {
+    // An initializer to create an ExchangeRate object from an ExchangeRateResponse object and a target currency.
+    init?(from response: ExchangeRateResponse, targetCurrency: String, dateFormatter: DateFormatter) {
+        guard let rate = response.rates[targetCurrency],
+              let date = dateFormatter.date(from: response.date) else {
+            return nil
+        }
+        
+        self.baseCurrency = response.base
+        self.targetCurrency = targetCurrency
+        self.rate = rate
+        self.date = date
+    }
+    
+    /// <#Description#>
+    /// - Parameter amount: <#amount description#>
+    /// - Returns: <#description#>
+    func convert(amount: Double) -> Double {
+        return amount * rate
+    }
 }
