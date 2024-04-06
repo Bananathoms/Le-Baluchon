@@ -52,13 +52,16 @@ class ExchangeRateViewController: UIViewController {
                     return
                 }
                 
+                // Update the current exchange rate.
+                self.currentRate = exchangeRate.rate
+                
                 self.labelBase.text = "Base currency: \(exchangeRate.baseCurrency)"
                 self.labelRate.text = "1 \(exchangeRate.baseCurrency) = \(exchangeRate.rate) \(exchangeRate.targetCurrency)"
                 self.labeldate.text = "Last update: \(exchangeRate.date)"
             }
         }
-
     }
+
     
     /// Performs the conversion of the entered amount to the target currency and displays the result.
     /// - Parameter sender: The button triggering the conversion action.
