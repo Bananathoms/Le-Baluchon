@@ -38,27 +38,26 @@ class ExchangeRateViewController: UIViewController {
     
     /// Loads the exchange rate data from the API and updates the UI accordingly.
     func loadExchangeRate() {
-        exchangeRateModel.fetchExchangeRate(fromCurrency: "EUR", toCurrency: "USD") { [weak self] (rate, base, date, error) in
+        exchangeRateModel.fetchExchangeRate(fromCurrency: "EUR", toCurrency: "USD") { [weak self] (exchangeRate, error) in
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 
                 if let error = error {
-                    // Displays an error if fetching fails.
-                    self.labelRate.text = "Erreur : \(error.localizedDescription)"
+                    self.labelRate.text = "Error: \(error.localizedDescription)"
                     return
                 }
                 
-                guard let rate = rate, let base = base, let date = date else {
-                    self.labelRate.text = "Taux de change non disponible."
+                guard let exchangeRate = exchangeRate else {
+                    self.labelRate.text = "Exchange rate not available."
                     return
                 }
                 
-                // Updates labels with the fetched data.
-                self.labelBase.text = "Devise de base : \(base)"
-                self.labelRate.text = "1 \(base) = \(rate) USD"
-                self.labeldate.text = "Dernière mise à jour : \(date)"
+                self.labelBase.text = "Base currency: \(exchangeRate.baseCurrency)"
+                self.labelRate.text = "1 \(exchangeRate.baseCurrency) = \(exchangeRate.rate) \(exchangeRate.targetCurrency)"
+                self.labeldate.text = "Last update: \(exchangeRate.date)"
             }
         }
+
     }
     
     /// Performs the conversion of the entered amount to the target currency and displays the result.

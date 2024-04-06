@@ -14,6 +14,13 @@ struct ExchangeRateResponse: Codable {
     let date: String // The date of the last update of the exchange rates.
 }
 
+struct ExchangeRate {
+    let baseCurrency: String
+    let targetCurrency: String
+    let rate: Double
+    let date: String
+}
+
 /// Model for fetching exchange rates from the Fixer.io API.
 class ExchangeRateModel {
     // API key used to access the Fixer.io API.
@@ -24,27 +31,25 @@ class ExchangeRateModel {
     ///   - fromCurrency: The starting currency for which to obtain the exchange rate.
     ///   - toCurrency: The target currency for the conversion.
     ///   - completion: A closure that is called with the exchange rate, base currency, the date of the last update, or an error if the request fails.
-    func fetchExchangeRate(fromCurrency: String, toCurrency: String, completion: @escaping (Double?, String?, String?, Error?) -> Void) {
-        // Constructing the URL for the API request using the API key and the specified currencies.
+    func fetchExchangeRate(fromCurrency: String, toCurrency: String, completion: @escaping (ExchangeRate?, Error?) -> Void) {
         let urlString = "http://data.fixer.io/api/latest?access_key=\(ExchangeRateModel.apiKey)&symbols=\(toCurrency)"
         
         // Checking the validity of the URL.
         guard let url = URL(string: urlString) else {
-            completion(nil, nil, nil, NSError(domain: "ExchangeRateModel", code: 1, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"]))
+            completion(nil, NSError(domain: "ExchangeRateModel", code: 1, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"]))
             return
         }
-        
-        // Creating and starting a network session task to perform the HTTP request.
+
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             // Handling network request errors.
             if let error = error {
-                completion(nil, nil, nil, error)
+                completion(nil, error)
                 return
             }
             
             // Checking for data in the response.
             guard let data = data else {
-                completion(nil, nil, nil, NSError(domain: "ExchangeRateModel", code: 2, userInfo: [NSLocalizedDescriptionKey: "No data received"]))
+                completion(nil, NSError(domain: "ExchangeRateModel", code: 2, userInfo: [NSLocalizedDescriptionKey: "No data received"]))
                 return
             }
             
@@ -52,17 +57,16 @@ class ExchangeRateModel {
             do {
                 let decoder = JSONDecoder()
                 let decodedResponse = try decoder.decode(ExchangeRateResponse.self, from: data)
-                // Extracting the exchange rate, base currency, and date from the decoded response.
-                let rate = decodedResponse.rates[toCurrency]
-                let base = decodedResponse.base
-                let date = decodedResponse.date
-                // Calling the completion closure with the results.
-                completion(rate, base, date, nil)
+                if let rate = decodedResponse.rates[toCurrency] {
+                    let exchangeRate = ExchangeRate(baseCurrency: decodedResponse.base, targetCurrency: toCurrency, rate: rate, date: decodedResponse.date)
+                    completion(exchangeRate, nil)
+                } else {
+                    completion(nil, NSError(domain: "ExchangeRateModel", code: 3, userInfo: [NSLocalizedDescriptionKey: "Rate not found for target currency"]))
+                }
             } catch {
-                // Handling decoding errors.
-                completion(nil, nil, nil, error)
+                completion(nil, error)
             }
         }
-        task.resume() // Starts the network task.
+        task.resume()
     }
 }

@@ -20,6 +20,13 @@ struct Translation: Codable {
     let translatedText: String
 }
 
+struct TranslationResult {
+    let originalText: String
+    let translatedText: String
+    let sourceLanguage: String
+    let targetLanguage: String
+}
+
 /// Model for interacting with the Google Translate API.
 class TranslationModel {
     // API key for Google Translate.
@@ -33,7 +40,7 @@ class TranslationModel {
     ///   - sourceLanguage: The source language of the text (e.g., "fr" for French).
     ///   - targetLanguage: The target language for the translation (e.g., "en" for English).
     ///   - completion: A closure called with the translated text or an error.
-    func translate(text: String, from sourceLanguage: String, to targetLanguage: String, completion: @escaping (String?, Error?) -> Void) {
+    func translate(text: String, from sourceLanguage: String, to targetLanguage: String, completion: @escaping (TranslationResult?, Error?) -> Void) {
         guard let encodedText = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
             completion(nil, NSError(domain: "GoogleTranslateModel", code: 1, userInfo: [NSLocalizedDescriptionKey: "Failed to encode text"]))
             return
@@ -59,7 +66,8 @@ class TranslationModel {
             do {
                 let decodedResponse = try JSONDecoder().decode(TranslateResponse.self, from: data)
                 if let translatedText = decodedResponse.data.translations.first?.translatedText {
-                    completion(translatedText, nil)
+                    let result = TranslationResult(originalText: text, translatedText: translatedText, sourceLanguage: sourceLanguage, targetLanguage: targetLanguage)
+                    completion(result, nil)
                 } else {
                     completion(nil, NSError(domain: "GoogleTranslateModel", code: 4, userInfo: [NSLocalizedDescriptionKey: "Translation not found in response"]))
                 }
@@ -70,4 +78,5 @@ class TranslationModel {
         
         task.resume() // Starts the network task.
     }
+
 }
