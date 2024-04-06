@@ -7,41 +7,41 @@
 
 import UIKit
 
-/// Contrôleur de vue responsable de la traduction de textes.
+/// View controller responsible for text translation.
 class TranslationViewController: UIViewController {
 
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var translateButton: UIButton!
     @IBOutlet weak var resultLabel: UILabel!
     
-    // Le modèle pour la traduction
+    // Model for translation
     let translationModel = TranslationModel()
     
-    /// Appelée après le chargement de la vue du contrôleur. Utilisée pour la configuration initiale.
+    /// Called after the controller's view is loaded. Used for initial setup.
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        // Perform any additional setup after loading the view.
     }
     
-    /// Action déclenchée par le bouton de traduction
-    /// - Parameter sender: Le bouton qui a déclenché l'action.
+    /// Action triggered by the translation button
+    /// - Parameter sender: The button that triggered the action.
     @IBAction func translateButtonTapped(_ sender: UIButton) {
-        // Vérification que le champ de texte n'est pas vide
+        // Checks that the text field is not empty
         guard let sourceText = inputTextField.text, !sourceText.isEmpty else {
             resultLabel.text = "Veuillez entrer du texte à traduire."
             return
         }
         
-        // Effectue la traduction du texte saisi de la langue source vers la langue cible.
+        // Performs the translation of the entered text from the source language to the target language.
         translationModel.translate(text: sourceText, from: "fr", to: "en") { [weak self] translatedText, error in
             DispatchQueue.main.async {
                 if let error = error {
-                    // En cas d'erreur lors de la traduction, affiche un message d'erreur.
+                    // In case of an error during translation, display an error message.
                     self?.resultLabel.text = "Erreur de traduction : \(error.localizedDescription)"
                     return
                 }
                 
-                // Affichage du texte traduit ou d'un message si la traduction n'est pas disponible.
+                // Display the translated text or a message if the translation is not available.
                 if let translatedText = translatedText {
                     self?.resultLabel.text = translatedText
                 } else {

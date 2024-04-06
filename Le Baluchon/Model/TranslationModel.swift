@@ -7,7 +7,7 @@
 
 import Foundation
 
-// Modèles pour décoder la réponse JSON de l'API Google Translate.
+// Models to decode the JSON response from the Google Translate API.
 struct TranslateResponse: Codable {
     let data: TranslationsData
 }
@@ -20,19 +20,19 @@ struct Translation: Codable {
     let translatedText: String
 }
 
-/// Modèle pour interagir avec l'API Google Translate.
+/// Model for interacting with the Google Translate API.
 class TranslationModel {
-    // Clé API pour Google Translate.
+    // API key for Google Translate.
     private let apiKey = "AIzaSyCxSsQc8WHyOCRDgO-8UbFMZOScvgE0FH0"
-    // L'URL de base de l'API Google Translate.
+    // The base URL of the Google Translate API.
     private let baseUrlString = "https://translation.googleapis.com/language/translate/v2"
     
-    /// Traduit un texte d'une langue source vers une langue cible en utilisant l'API Google Translate.
+    /// Translates text from a source language to a target language using the Google Translate API.
     /// - Parameters:
-    ///   - text: Le texte à traduire.
-    ///   - sourceLanguage:  La langue source du texte (par exemple, "fr" pour le français).
-    ///   - targetLanguage: La langue cible pour la traduction (par exemple, "en" pour l'anglais).
-    ///   - completion: Une closure appelée avec le texte traduit ou une erreur.
+    ///   - text: The text to translate.
+    ///   - sourceLanguage: The source language of the text (e.g., "fr" for French).
+    ///   - targetLanguage: The target language for the translation (e.g., "en" for English).
+    ///   - completion: A closure called with the translated text or an error.
     func translate(text: String, from sourceLanguage: String, to targetLanguage: String, completion: @escaping (String?, Error?) -> Void) {
         guard let encodedText = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
             completion(nil, NSError(domain: "GoogleTranslateModel", code: 1, userInfo: [NSLocalizedDescriptionKey: "Failed to encode text"]))
@@ -68,6 +68,6 @@ class TranslationModel {
             }
         }
         
-        task.resume() // Démarre la tâche de réseau.
+        task.resume() // Starts the network task.
     }
 }

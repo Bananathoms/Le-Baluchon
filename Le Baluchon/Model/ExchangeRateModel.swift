@@ -7,64 +7,62 @@
 
 import Foundation
 
-/// Structure pour décoder la réponse de l'API Fixer.io. Conforme au protocole `Codable` pour faciliter le décodage à partir d'une réponse JSON.
+/// Structure for decoding the response from the Fixer.io API. Conforms to the `Codable` protocol to facilitate decoding from a JSON response.
 struct ExchangeRateResponse: Codable {
-    let rates: [String: Double] // Dictionnaire des taux de change avec les codes des devises comme clés.
-    let base: String // La devise de base utilisée pour les taux de change.
-    let date: String // La date de la dernière mise à jour des taux de change.
+    let rates: [String: Double] // Dictionary of exchange rates with currency codes as keys.
+    let base: String // The base currency used for the exchange rates.
+    let date: String // The date of the last update of the exchange rates.
 }
 
-
-/// Modèle pour récupérer les taux de change depuis l'API Fixer.io.
+/// Model for fetching exchange rates from the Fixer.io API.
 class ExchangeRateModel {
-    // Clé API utilisée pour accéder à l'API Fixer.io.
+    // API key used to access the Fixer.io API.
     static let apiKey = "8ab60a4a125337ce98010667e48c33c3"
     
-    /// Récupère le taux de change entre deux devises depuis l'API Fixer.io et exécute une closure de complétion avec les résultats.
+    /// Fetches the exchange rate between two currencies from the Fixer.io API and executes a completion closure with the results.
     /// - Parameters:
-    ///   - fromCurrency: La devise de départ pour laquelle obtenir le taux de change.
-    ///   - toCurrency: La devise cible pour la conversion.
-    ///   - completion: Une closure qui est appelée avec le taux de change, la devise de base, la date de la dernière mise à jour, ou une erreur si la requête échoue.
+    ///   - fromCurrency: The starting currency for which to obtain the exchange rate.
+    ///   - toCurrency: The target currency for the conversion.
+    ///   - completion: A closure that is called with the exchange rate, base currency, the date of the last update, or an error if the request fails.
     func fetchExchangeRate(fromCurrency: String, toCurrency: String, completion: @escaping (Double?, String?, String?, Error?) -> Void) {
-        // Construction de l'URL pour la requête à l'API en utilisant la clé API et les devises spécifiées.
+        // Constructing the URL for the API request using the API key and the specified currencies.
         let urlString = "http://data.fixer.io/api/latest?access_key=\(ExchangeRateModel.apiKey)&symbols=\(toCurrency)"
         
-        // Vérification de la validité de l'URL.
+        // Checking the validity of the URL.
         guard let url = URL(string: urlString) else {
             completion(nil, nil, nil, NSError(domain: "ExchangeRateModel", code: 1, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"]))
             return
         }
         
-        // Création et démarrage d'une tâche de session de réseau pour effectuer la requête HTTP.
+        // Creating and starting a network session task to perform the HTTP request.
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            // Gestion des erreurs de requête réseau.
+            // Handling network request errors.
             if let error = error {
                 completion(nil, nil, nil, error)
                 return
             }
             
-            // Vérification de la présence de données dans la réponse.
+            // Checking for data in the response.
             guard let data = data else {
                 completion(nil, nil, nil, NSError(domain: "ExchangeRateModel", code: 2, userInfo: [NSLocalizedDescriptionKey: "No data received"]))
                 return
             }
             
-            // Tentative de décodage de la réponse JSON dans la structure ExchangeRateResponse.
+            // Attempting to decode the JSON response into the ExchangeRateResponse structure.
             do {
                 let decoder = JSONDecoder()
                 let decodedResponse = try decoder.decode(ExchangeRateResponse.self, from: data)
-                // Extraction du taux de change, de la devise de base et de la date à partir de la réponse décodée.
+                // Extracting the exchange rate, base currency, and date from the decoded response.
                 let rate = decodedResponse.rates[toCurrency]
                 let base = decodedResponse.base
                 let date = decodedResponse.date
-                // Appel de la closure de complétion avec les résultats.
+                // Calling the completion closure with the results.
                 completion(rate, base, date, nil)
             } catch {
-                // Gestion des erreurs de décodage.
+                // Handling decoding errors.
                 completion(nil, nil, nil, error)
             }
         }
-        task.resume() // Démarre la tâche de réseau.
+        task.resume() // Starts the network task.
     }
 }
-

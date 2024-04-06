@@ -7,15 +7,15 @@
 
 import Foundation
 
-/// Réponse principale de l'API météo, contenant les informations météorologiques essentielles.
+/// Main weather API response, containing essential weather information.
 struct WeatherResponse: Codable {
     let main: WeatherMain
     let weather: [WeatherCondition]
-    let name: String // Correspond au "name": "Paris"
-    // Ajoutez d'autres propriétés au besoin, en fonction des données que vous souhaitez utiliser
+    let name: String // Corresponds to "name": "Paris"
+    // Add other properties as needed, based on the data you want to use
 }
 
-/// Contient les informations principales sur la météo, telles que la température et l'humidité.
+/// Contains main weather information, such as temperature and humidity.
 struct WeatherMain: Codable {
     let temp: Double
     let feelsLike: Double
@@ -24,7 +24,7 @@ struct WeatherMain: Codable {
     let pressure: Int
     let humidity: Int
     
-    /// Custom keys pour le mapping de JSON vers les propriétés de la structure, permettant de gérer les noms de champs différents.
+    /// Custom keys for mapping JSON to the structure's properties, allowing for handling of different field names.
     enum CodingKeys: String, CodingKey {
         case temp
         case feelsLike = "feels_like"
@@ -35,7 +35,7 @@ struct WeatherMain: Codable {
     }
 }
 
-/// Représente une condition météorologique spécifique, comme "ensoleillé" ou "nuageux".
+/// Represents a specific weather condition, such as "sunny" or "cloudy".
 struct WeatherCondition: Codable {
     let id: Int
     let main: String
@@ -43,40 +43,40 @@ struct WeatherCondition: Codable {
     let icon: String
 }
 
-/// Gère la récupération des données météorologiques depuis l'API OpenWeatherMap.
+/// Manages fetching weather data from the OpenWeatherMap API.
 class WeatherModel {
     private let apiKey = "abe459e1d44b33ea60ce9f7a1d51d105"
     private let baseUrl = "https://api.openweathermap.org/data/2.5/weather"
     
-    /// Récupère les données météorologiques pour une ville donnée et exécute une closure de complétion avec les résultats.
+    /// Fetches weather data for a given city and executes a completion closure with the results.
     /// - Parameters:
-    ///   - city: Le nom de la ville pour laquelle récupérer les données météo.
-    ///   - completion: Une closure exécutée avec les données météo ou une erreur
+    ///   - city: The name of the city for which to retrieve weather data.
+    ///   - completion: A closure executed with the weather data or an error.
     func fetchWeather(forCity city: String, completion: @escaping (WeatherResponse?, Error?) -> Void) {
-        // Construit l'URL de la requête en incluant le nom de la ville, la clé API, et les unités en métrique.
+        // Constructs the request URL including the city name, API key, and metric units.
         let urlString = "\(baseUrl)?q=\(city)&appid=\(apiKey)&units=metric"
         
         guard let url = URL(string: urlString) else {
-            // En cas d'URL invalide, appelle la closure de complétion avec une erreur.
+            // If the URL is invalid, calls the completion closure with an error.
             completion(nil, NSError(domain: "WeatherModel", code: 1, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"]))
             return
         }
         
-        // Effectue la requête réseau.
+        // Performs the network request.
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
-                // En cas d'erreur réseau, appelle la closure de complétion avec cette erreur.
+                // In case of a network error, calls the completion closure with this error.
                 completion(nil, error)
                 return
             }
             
-            // Vérifie que des données ont été reçues.
+            // Checks that data was received.
             guard let data = data else {
                 completion(nil, NSError(domain: "WeatherModel", code: 2, userInfo: [NSLocalizedDescriptionKey: "No data received"]))
                 return
             }
             
-            // Tente de décoder la réponse JSON dans les structures Swift.
+            // Attempts to decode the JSON response into Swift structures.
             do {
                 let weatherResponse = try JSONDecoder().decode(WeatherResponse.self, from: data)
                 completion(weatherResponse, nil)
@@ -85,7 +85,6 @@ class WeatherModel {
             }
         }
         
-        task.resume() // Démarre la tâche de réseau.
+        task.resume() // Starts the network task.
     }
 }
-

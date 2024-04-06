@@ -16,40 +16,40 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var minTemperatureLabel: UILabel!
     @IBOutlet weak var maxTemperatureLabel: UILabel!
     
-    // Instance du modèle météo pour récupérer les données de l'API OpenWeatherMap
+    // Weather model instance to fetch data from the OpenWeatherMap API
     let weatherModel = WeatherModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Effectue une requête initiale pour obtenir les données météo pour une ville spécifique dès le chargement de la vue.
+        // Performs an initial request to get weather data for a specific city upon view loading.
         fetchWeatherData(forCity: "Paris")
     }
-    /// Récupère les données météorologiques pour une ville spécifiée et met à jour l'interface utilisateur en conséquence.
-        /// - Parameter city: Le nom de la ville pour laquelle récupérer les données météo.
-        func fetchWeatherData(forCity city: String) {
-            weatherModel.fetchWeather(forCity: city) { [weak self] weatherResponse, error in
-                DispatchQueue.main.async {
-                    if let error = error {
-                        // En cas d'erreur, affichez un message approprié.
-                        print("Erreur lors de la récupération des données météo: \(error.localizedDescription)")
-                        return
-                    }
-                    
-                    // Gérer le cas où aucun résultat n'est retourné.
-                    guard let weatherResponse = weatherResponse else {
-                        print("Aucune donnée météo disponible.")
-                        return
-                    }
-                    
-                    // Mise à jour de l'interface utilisateur avec les données météo reçues.
-                    self?.updateUI(with: weatherResponse)
+    /// Fetches weather data for a specified city and updates the UI accordingly.
+    /// - Parameter city: The name of the city to retrieve weather data for.
+    func fetchWeatherData(forCity city: String) {
+        weatherModel.fetchWeather(forCity: city) { [weak self] weatherResponse, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    // Displays an appropriate message in case of an error.
+                    print("Erreur lors de la récupération des données météo: \(error.localizedDescription)")
+                    return
                 }
+                
+                // Handle the case where no result is returned.
+                guard let weatherResponse = weatherResponse else {
+                    print("Aucune donnée météo disponible.")
+                    return
+                }
+                
+                // Update the UI with the received weather data.
+                self?.updateUI(with: weatherResponse)
             }
         }
-        
-    /// Met à jour l'interface utilisateur avec les données météorologiques fournies.
-    /// - Parameter weatherData: Les données météorologiques à afficher.
+    }
+    
+    /// Updates the UI with the provided weather data.
+    /// - Parameter weatherData: The weather data to display.
     func updateUI(with weatherData: WeatherResponse) {
         locationLabel.text = weatherData.name
         currentTemperatureLabel.text = "\(weatherData.main.temp)°C"
@@ -57,14 +57,14 @@ class WeatherViewController: UIViewController {
         minTemperatureLabel.text = "Min: \(weatherData.main.tempMin)°C"
         maxTemperatureLabel.text = "Max: \(weatherData.main.tempMax)°C"
         
-        // Télécharge et affiche l'icône météo basée sur le code d'icône reçu.
+        // Downloads and displays the weather icon based on the received icon code.
         if let iconCode = weatherData.weather.first?.icon {
             downloadWeatherIcon(withCode: iconCode)
         }
     }
     
-    /// Télécharge l'icône météo à partir du code d'icône fourni et met à jour `weatherIconImageView`.
-    /// - Parameter iconCode: Le code de l'icône météo à télécharger.
+    /// Downloads the weather icon from the provided icon code and updates `weatherIconImageView`.
+    /// - Parameter iconCode: The icon code of the weather to download.
     func downloadWeatherIcon(withCode iconCode: String) {
         let urlString = "https://openweathermap.org/img/wn/\(iconCode)@2x.png"
         guard let url = URL(string: urlString) else { return }
@@ -72,7 +72,7 @@ class WeatherViewController: UIViewController {
         let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             guard let data = data, error == nil else { return }
             DispatchQueue.main.async {
-                // Crée une UIImage à partir des données téléchargées et met à jour l'UIImageView.
+                // Creates a UIImage from the downloaded data and updates the UIImageView.
                 self?.weatherIconImageView.image = UIImage(data: data)
             }
         }
