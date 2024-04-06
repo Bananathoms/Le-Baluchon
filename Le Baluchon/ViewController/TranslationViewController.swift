@@ -15,7 +15,7 @@ class TranslationViewController: UIViewController {
     @IBOutlet weak var resultLabel: UILabel!
     
     // Model for translation
-    let translationModel = TranslationModel()
+    let translationService = TranslationService()
     
     /// Called after the controller's view is loaded. Used for initial setup.
     override func viewDidLoad() {
@@ -28,12 +28,12 @@ class TranslationViewController: UIViewController {
     @IBAction func translateButtonTapped(_ sender: UIButton) {
         // Checks that the text field is not empty
         guard let sourceText = inputTextField.text, !sourceText.isEmpty else {
-            resultLabel.text = "Veuillez entrer du texte à traduire."
+            self.resultLabel.text = "Veuillez entrer du texte à traduire."
             return
         }
         
         // Performs the translation of the entered text from the source language to the target language.
-        translationModel.translate(text: sourceText, from: "fr", to: "en") { [weak self] translatedText, error in
+        self.translationService.translate(text: sourceText, from: "fr", to: "en") { [weak self] translatedText, error in
             DispatchQueue.main.async {
                 if let error = error {
                     // In case of an error during translation, display an error message.

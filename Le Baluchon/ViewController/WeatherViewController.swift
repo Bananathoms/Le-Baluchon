@@ -17,7 +17,7 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var maxTemperatureLabel: UILabel!
     
     // Weather model instance to fetch data from the OpenWeatherMap API
-    let weatherModel = WeatherModel()
+    let weatherService = WeatherService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ class WeatherViewController: UIViewController {
     /// Fetches weather data for a specified city and updates the UI accordingly.
     /// - Parameter city: The name of the city to retrieve weather data for.
     func fetchWeatherData(forCity city: String) {
-        weatherModel.fetchWeather(forCity: city) { [weak self] weatherResponse, error in
+        weatherService.fetchWeather(forCity: city) { [weak self] weatherResponse, error in
             DispatchQueue.main.async {
                 if let error = error {
                     // Displays an appropriate message in case of an error.

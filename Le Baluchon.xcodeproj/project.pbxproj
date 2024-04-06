@@ -21,6 +21,9 @@
 		DEDA8C9A2BB79AD1003F5CF9 /* ExchangeRateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8C992BB79AD1003F5CF9 /* ExchangeRateModel.swift */; };
 		DEDA8C9C2BB8404C003F5CF9 /* TranslationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8C9B2BB8404C003F5CF9 /* TranslationModel.swift */; };
 		DEDA8C9E2BB84822003F5CF9 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8C9D2BB84822003F5CF9 /* WeatherModel.swift */; };
+		DEDA8CA02BC1B617003F5CF9 /* TranslationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8C9F2BC1B617003F5CF9 /* TranslationService.swift */; };
+		DEDA8CA32BC1B64A003F5CF9 /* ExchangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8CA22BC1B64A003F5CF9 /* ExchangeRateService.swift */; };
+		DEDA8CA52BC1B65E003F5CF9 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8CA42BC1B65E003F5CF9 /* WeatherService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +62,9 @@
 		DEDA8C992BB79AD1003F5CF9 /* ExchangeRateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateModel.swift; sourceTree = "<group>"; };
 		DEDA8C9B2BB8404C003F5CF9 /* TranslationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationModel.swift; sourceTree = "<group>"; };
 		DEDA8C9D2BB84822003F5CF9 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		DEDA8C9F2BC1B617003F5CF9 /* TranslationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationService.swift; sourceTree = "<group>"; };
+		DEDA8CA22BC1B64A003F5CF9 /* ExchangeRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateService.swift; sourceTree = "<group>"; };
+		DEDA8CA42BC1B65E003F5CF9 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +120,7 @@
 				DEDA8C8F2BB73621003F5CF9 /* View */,
 				DEDA8C902BB7362B003F5CF9 /* ViewController */,
 				DEDA8C972BB74675003F5CF9 /* Model */,
+				DEDA8CA12BC1B622003F5CF9 /* Service */,
 				DEDA8C662BB731F2003F5CF9 /* Assets.xcassets */,
 				DEDA8C6B2BB731F2003F5CF9 /* Info.plist */,
 			);
@@ -160,10 +167,20 @@
 			isa = PBXGroup;
 			children = (
 				DEDA8C992BB79AD1003F5CF9 /* ExchangeRateModel.swift */,
-				DEDA8C9B2BB8404C003F5CF9 /* TranslationModel.swift */,
 				DEDA8C9D2BB84822003F5CF9 /* WeatherModel.swift */,
+				DEDA8C9B2BB8404C003F5CF9 /* TranslationModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		DEDA8CA12BC1B622003F5CF9 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				DEDA8CA22BC1B64A003F5CF9 /* ExchangeRateService.swift */,
+				DEDA8CA42BC1B65E003F5CF9 /* WeatherService.swift */,
+				DEDA8C9F2BC1B617003F5CF9 /* TranslationService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,11 +316,14 @@
 			files = (
 				DEDA8C5E2BB731EF003F5CF9 /* AppDelegate.swift in Sources */,
 				DEDA8C922BB73E2F003F5CF9 /* WeatherViewController.swift in Sources */,
+				DEDA8CA52BC1B65E003F5CF9 /* WeatherService.swift in Sources */,
 				DEDA8C9A2BB79AD1003F5CF9 /* ExchangeRateModel.swift in Sources */,
 				DEDA8C602BB731EF003F5CF9 /* SceneDelegate.swift in Sources */,
 				DEDA8C8E2BB734FD003F5CF9 /* ExchangeRateViewController.swift in Sources */,
+				DEDA8CA02BC1B617003F5CF9 /* TranslationService.swift in Sources */,
 				DEDA8C9C2BB8404C003F5CF9 /* TranslationModel.swift in Sources */,
 				DEDA8C9E2BB84822003F5CF9 /* WeatherModel.swift in Sources */,
+				DEDA8CA32BC1B64A003F5CF9 /* ExchangeRateService.swift in Sources */,
 				DEDA8C942BB73E51003F5CF9 /* TranslationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

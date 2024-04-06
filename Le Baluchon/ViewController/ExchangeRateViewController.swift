@@ -17,13 +17,13 @@ class ExchangeRateViewController: UIViewController {
     @IBOutlet weak var textFieldAmount: UITextField!
     @IBOutlet weak var labelResult: UILabel!
     
-    var exchangeRateModel = ExchangeRateModel()
+    var exchangeRateService = ExchangeRateService()
     var currentRate: Double?
     
     /// Configures the ViewController after the view has loaded.
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadExchangeRate()
+        self.loadExchangeRate()
 
         
         // Adds a tap gesture recognizer to hide the keyboard when the user taps elsewhere on the screen.
@@ -38,7 +38,7 @@ class ExchangeRateViewController: UIViewController {
     
     /// Loads the exchange rate data from the API and updates the UI accordingly.
     func loadExchangeRate() {
-        exchangeRateModel.fetchExchangeRate(fromCurrency: "EUR", toCurrency: "USD") { [weak self] (exchangeRate, error) in
+        self.exchangeRateService.fetchExchangeRate(fromCurrency: "EUR", toCurrency: "USD") { [weak self] (exchangeRate, error) in
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 
@@ -65,7 +65,7 @@ class ExchangeRateViewController: UIViewController {
     @IBAction func convertTapped(_ sender: UIButton) {
         // Checks the user input and the existence of an exchange rate.
         guard let amountText = textFieldAmount.text, let amount = Double(amountText), let rate = currentRate else {
-            labelResult.text = "Entrée invalide ou taux de change non chargé"
+            self.labelResult.text = "Entrée invalide ou taux de change non chargé"
             return
         }
 
