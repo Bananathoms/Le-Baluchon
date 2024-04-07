@@ -14,16 +14,20 @@ struct ExchangeRateResponse: Codable {
     let date: String // The date of the last update of the exchange rates.
 }
 
-/// <#Description#>
+/// Represents an exchange rate between two currencies, including the rate and the date of the rate.
 struct ExchangeRate: Codable {
-    let baseCurrency: String
-    let targetCurrency: String
-    let rate: Double
-    let date: Date
+    let baseCurrency: String // The currency from which the conversion starts.
+    let targetCurrency: String // The currency to which the conversion is done.
+    let rate: Double // The conversion rate from the base currency to the target currency.
+    let date: Date // The date when this exchange rate was last updated.
 }
 
 extension ExchangeRate {
-    // An initializer to create an ExchangeRate object from an ExchangeRateResponse object and a target currency.
+    /// Creates an `ExchangeRate` instance from an `ExchangeRateResponse` object and a specified target currency.
+    /// - Parameters:
+    ///   - response: The `ExchangeRateResponse` containing the data to create the `ExchangeRate`.
+    ///   - targetCurrency: The target currency for which the rate is needed.
+    ///   - dateFormatter: A `DateFormatter` to convert the date string to a `Date` object.
     init?(from response: ExchangeRateResponse, targetCurrency: String, dateFormatter: DateFormatter) {
         guard let rate = response.rates[targetCurrency],
               let date = dateFormatter.date(from: response.date) else {
