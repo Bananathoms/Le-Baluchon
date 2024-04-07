@@ -24,6 +24,8 @@
 		DEDA8CA02BC1B617003F5CF9 /* TranslationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8C9F2BC1B617003F5CF9 /* TranslationService.swift */; };
 		DEDA8CA32BC1B64A003F5CF9 /* ExchangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8CA22BC1B64A003F5CF9 /* ExchangeRateService.swift */; };
 		DEDA8CA52BC1B65E003F5CF9 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8CA42BC1B65E003F5CF9 /* WeatherService.swift */; };
+		DEDA8CA72BC246BB003F5CF9 /* URLSessionFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8CA62BC246BB003F5CF9 /* URLSessionFake.swift */; };
+		DEDA8CA92BC248E4003F5CF9 /* ExchangeRateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8CA82BC248E4003F5CF9 /* ExchangeRateTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		DEDA8C9F2BC1B617003F5CF9 /* TranslationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationService.swift; sourceTree = "<group>"; };
 		DEDA8CA22BC1B64A003F5CF9 /* ExchangeRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateService.swift; sourceTree = "<group>"; };
 		DEDA8CA42BC1B65E003F5CF9 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		DEDA8CA62BC246BB003F5CF9 /* URLSessionFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionFake.swift; sourceTree = "<group>"; };
+		DEDA8CA82BC248E4003F5CF9 /* ExchangeRateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				DEDA8C742BB731F2003F5CF9 /* Le_BaluchonTests.swift */,
+				DEDA8CA82BC248E4003F5CF9 /* ExchangeRateTest.swift */,
 			);
 			path = "Le BaluchonTests";
 			sourceTree = "<group>";
@@ -179,6 +184,7 @@
 				DEDA8CA22BC1B64A003F5CF9 /* ExchangeRateService.swift */,
 				DEDA8CA42BC1B65E003F5CF9 /* WeatherService.swift */,
 				DEDA8C9F2BC1B617003F5CF9 /* TranslationService.swift */,
+				DEDA8CA62BC246BB003F5CF9 /* URLSessionFake.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -315,6 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEDA8C5E2BB731EF003F5CF9 /* AppDelegate.swift in Sources */,
+				DEDA8CA72BC246BB003F5CF9 /* URLSessionFake.swift in Sources */,
 				DEDA8C922BB73E2F003F5CF9 /* WeatherViewController.swift in Sources */,
 				DEDA8CA52BC1B65E003F5CF9 /* WeatherService.swift in Sources */,
 				DEDA8C9A2BB79AD1003F5CF9 /* ExchangeRateModel.swift in Sources */,
@@ -332,6 +339,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEDA8CA92BC248E4003F5CF9 /* ExchangeRateTest.swift in Sources */,
 				DEDA8C752BB731F2003F5CF9 /* Le_BaluchonTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
