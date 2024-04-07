@@ -25,6 +25,8 @@
 		DEDA8CA52BC1B65E003F5CF9 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8CA42BC1B65E003F5CF9 /* WeatherService.swift */; };
 		DEDA8CA72BC246BB003F5CF9 /* URLSessionFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8CA62BC246BB003F5CF9 /* URLSessionFake.swift */; };
 		DEDA8CA92BC248E4003F5CF9 /* ExchangeRateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8CA82BC248E4003F5CF9 /* ExchangeRateTest.swift */; };
+		DEDA8CAD2BC2C958003F5CF9 /* WeatherTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8CAC2BC2C958003F5CF9 /* WeatherTest.swift */; };
+		DEDA8CAF2BC2C96C003F5CF9 /* TranslationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8CAE2BC2C96C003F5CF9 /* TranslationTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		DEDA8CA42BC1B65E003F5CF9 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		DEDA8CA62BC246BB003F5CF9 /* URLSessionFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionFake.swift; sourceTree = "<group>"; };
 		DEDA8CA82BC248E4003F5CF9 /* ExchangeRateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateTest.swift; sourceTree = "<group>"; };
+		DEDA8CAC2BC2C958003F5CF9 /* WeatherTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTest.swift; sourceTree = "<group>"; };
+		DEDA8CAE2BC2C96C003F5CF9 /* TranslationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +137,8 @@
 			isa = PBXGroup;
 			children = (
 				DEDA8CA82BC248E4003F5CF9 /* ExchangeRateTest.swift */,
+				DEDA8CAC2BC2C958003F5CF9 /* WeatherTest.swift */,
+				DEDA8CAE2BC2C96C003F5CF9 /* TranslationTest.swift */,
 			);
 			path = "Le BaluchonTests";
 			sourceTree = "<group>";
@@ -336,6 +342,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEDA8CAF2BC2C96C003F5CF9 /* TranslationTest.swift in Sources */,
+				DEDA8CAD2BC2C958003F5CF9 /* WeatherTest.swift in Sources */,
 				DEDA8CA92BC248E4003F5CF9 /* ExchangeRateTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
