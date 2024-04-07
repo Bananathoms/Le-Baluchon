@@ -20,7 +20,7 @@ struct Translation: Codable {
     let translatedText: String
 }
 
-struct TranslationResult {
+struct TranslationResult: Codable {
     let originalText: String
     let translatedText: String
     let sourceLanguage: String

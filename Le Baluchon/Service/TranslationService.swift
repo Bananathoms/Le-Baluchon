@@ -9,10 +9,20 @@ import Foundation
 
 /// Manages fetching weather data from the GoogleTranslate API.
 class TranslationService {
-    // API key for Google Translate.
-    private let apiKey = "AIzaSyCxSsQc8WHyOCRDgO-8UbFMZOScvgE0FH0"
-    // The base URL of the Google Translate API.
-    private let baseUrlString = "https://translation.googleapis.com/language/translate/v2"
+    private let apiKey: String
+    private let baseUrlString: String
+    private let session: URLSession
+    
+    /// Initializes a new TranslationService.
+    /// - Parameters:
+    ///   - apiKey: The API key for the Google Translate API.
+    ///   - baseUrlString: The base URL string for the Google Translate API.
+    ///   - session: The URLSession to use for network requests. Defaults to `.shared` for production use.
+    init(apiKey: String = "AIzaSyCxSsQc8WHyOCRDgO-8UbFMZOScvgE0FH0", baseUrlString: String = "https://translation.googleapis.com/language/translate/v2", session: URLSession = .shared) {
+        self.apiKey = apiKey
+        self.baseUrlString = baseUrlString
+        self.session = session
+    }
     
     /// Translates text from a source language to a target language using the Google Translate API.
     /// - Parameters:
@@ -32,7 +42,7 @@ class TranslationService {
             return
         }
         
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+        let task = self.session.dataTask(with: url) { data, response, error in 
             if let error = error {
                 completion(nil, error)
                 return
@@ -55,8 +65,7 @@ class TranslationService {
                 completion(nil, error)
             }
         }
-        task.resume() // Starts the network task.
+        task.resume()
     }
 }
-
 

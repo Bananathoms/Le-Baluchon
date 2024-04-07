@@ -6,30 +6,89 @@
 //
 
 import XCTest
+@testable import Le_Baluchon
 
-final class TranslationTest: XCTestCase {
+/// Tests for the TranslationService class.
+class TranslationServiceTests: XCTestCase {
+    var service: TranslationService!
+    var sessionMock: URLSessionFake!
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    /// Sets up the test environment before each test.
+    override func setUp() {
+        super.setUp()
+        self.sessionMock = URLSessionFake(data: nil, response: nil, error: nil)
+        self.service = TranslationService(session: sessionMock)
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+
+    /// Tears down the test environment after each test.
+    override func tearDown() {
+        self.service = nil
+        self.sessionMock = nil
+        super.tearDown()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    /// Tests if translating text successfully calls the completion with correct translated text.
+    func testTranslateSuccess() {
+        let expectedText = "Good morning"
+        let fakeData = """
+        {
+            "data": {
+                "translations": [
+                    { "translatedText": "\(expectedText)" }
+                ]
+            }
+        }
+        """.data(using: .utf8)!
+        sessionMock.data = fakeData
+        let expectation = self.expectation(description: "Translate text successfully.")
+
+        service.translate(text: "Bonjour", from: "fr", to: "en") { result, error in
+            XCTAssertNil(error)
+            XCTAssertNotNil(result)
+            XCTAssertEqual(result?.translatedText, expectedText)
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 1.0, handler: nil)
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    /// Tests if translating text with a network error calls the completion with an error.
+    func testTranslateFailure() {
+        let error = NSError(domain: "TestError", code: 1, userInfo: nil)
+        sessionMock.error = error
+        sessionMock.data = nil
+        let expectation = self.expectation(description: "Translate text fails with error.")
+
+        service.translate(text: "Bonjour", from: "fr", to: "en") { result, error in
+            XCTAssertNotNil(error)
+            XCTAssertNil(result)
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 1.0, handler: nil)
+    }
+    
+    /// Tests the JSON decoding of the translation response.
+    func testTranslationDecoding() {
+        let jsonData = """
+        {
+            "data": {
+                "translations": [
+                    { "translatedText": "Hello" }
+                ]
+            }
+        }
+        """.data(using: .utf8)!
+        
+        let decoder = JSONDecoder()
+        do {
+            let response = try decoder.decode(TranslateResponse.self, from: jsonData)
+            let translations = response.data.translations
+            XCTAssertFalse(translations.isEmpty)
+            XCTAssertEqual(translations.first?.translatedText, "Hello")
+        } catch {
+            XCTFail("Decoding failed: \(error)")
         }
     }
-
 }
