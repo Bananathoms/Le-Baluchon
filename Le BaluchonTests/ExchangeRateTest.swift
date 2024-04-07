@@ -7,43 +7,71 @@
 import XCTest
 @testable import Le_Baluchon
 
-/// Tests for the ExchangeRateService class.
+/// Tests for the `ExchangeRateService` class to ensure it properly handles fetching exchange rates.
+/// These tests validate both successful fetches and error handling, including simulated network responses.
 class ExchangeRateServiceTests: XCTestCase {
+    // The exchange rate service under test. Initialized with a mock URLSession.
     var service: ExchangeRateService!
+    // A mock URLSession used to simulate network responses.
     var sessionFake: URLSessionFake!
     
-    /// Set up the test environment before each test.
-    /// Initializes `ExchangeRateService` with a fake URLSession to simulate network responses.
+    /// Sets up the testing environment before each test runs. This includes clearing UserDefaults
+    /// to ensure a clean state and initializing `service` with a `sessionFake` to simulate network responses.
     override func setUp() {
         super.setUp()
-        // Initialize URLSessionFake with no data, response, or error to start a clean state
+        // Clear UserDefaults before each test to ensure a clean state
+        if let appDomain = Bundle.main.bundleIdentifier {
+            UserDefaults.standard.removePersistentDomain(forName: appDomain)
+        }
+        // Initialize sessionFake with no predefined behavior
         sessionFake = URLSessionFake(data: nil, response: nil, error: nil)
-        // Initialize ExchangeRateService with the fake URLSession
+        // Initialize the service with the mock session
         service = ExchangeRateService(session: sessionFake)
     }
     
-    /// Test the behavior of `fetchExchangeRateIfNeeded` when an error occurs during the network call.
-    /// This test expects the completion handler to be called with an error.
+    /// Cleans up the testing environment after each test completes. This includes setting
+    /// `service` and `sessionFake` to nil to break any potential reference cycles.
+    override func tearDown() {
+        service = nil
+        sessionFake = nil
+        super.tearDown()
+    }
+    
+    /// Helper function to simulate a cached exchange rate in UserDefaults.
+    /// This is used to test the behavior of fetching exchange rates when cached data exists.
+    /// - Parameters:
+    ///   - rate: The exchange rate value to cache.
+    ///   - base: The base currency code for the cached rate.
+    ///   - target: The target currency code for the cached rate.
+    private func simulateCachedExchangeRate(rate: Double, base: String, target: String) {
+        let exchangeRate = ExchangeRate(baseCurrency: base, targetCurrency: target, rate: rate, date: Date())
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(exchangeRate) {
+            UserDefaults.standard.set(encoded, forKey: "lastExchangeRate")
+        }
+    }
+    
+    /// Tests that `fetchExchangeRateIfNeeded` correctly calls its completion handler with an error
+    /// when the URLSessionFake simulates an error response.
     func testFetchExchangeRateShouldPostFailedCallbackIfError() {
-        // Configure URLSessionFake to simulate an error response
-        sessionFake.error = NSError(domain: "test", code: 0, userInfo: nil)
+        // Configure the sessionFake to simulate an error
+        sessionFake.error = NSError(domain: "testError", code: 1, userInfo: nil)
 
         let expectation = self.expectation(description: "Waiting for network call")
 
         service.fetchExchangeRateIfNeeded(fromCurrency: "EUR", toCurrency: "USD") { exchangeRate, error in
-            // Expect an error to be returned and no exchangeRate
-            XCTAssertNotNil(error, "Expected an error but did not receive one.")
-            XCTAssertNil(exchangeRate, "Expected no exchangeRate but received some.")
+            XCTAssertNotNil(error, "An error was expected but none was received.")
+            XCTAssertNil(exchangeRate, "No exchangeRate was expected but one was received.")
             expectation.fulfill()
         }
 
         waitForExpectations(timeout: 1)
     }
     
-    /// Test the behavior of `fetchExchangeRateIfNeeded` when the network call is successful and returns correct data.
-    /// This test expects the completion handler to be called with a valid `ExchangeRate` object.
+    /// Tests that `fetchExchangeRateIfNeeded` correctly calls its completion handler with valid
+    /// exchange rate data when the URLSessionFake is configured to return successful response data.
     func testFetchExchangeRateShouldPostSuccessCallbackIfNoErrorAndCorrectData() {
-        // Configure URLSessionFake with valid fake data
+        // Configure sessionFake with valid data to simulate a successful response
         let correctData = """
         {
             "rates": {"USD": 1.2},
@@ -52,31 +80,19 @@ class ExchangeRateServiceTests: XCTestCase {
         }
         """.data(using: .utf8)!
         sessionFake.data = correctData
-        sessionFake.response = HTTPURLResponse(url: URL(string: "http://data.fixer.io/api/")!,
-                                                statusCode: 200,
-                                                httpVersion: nil,
-                                                headerFields: nil)
+        sessionFake.response = HTTPURLResponse(url: URL(string: "http://data.fixer.io/api/")!, statusCode: 200, httpVersion: nil, headerFields: nil)
 
         let expectation = self.expectation(description: "Waiting for network call")
 
         service.fetchExchangeRateIfNeeded(fromCurrency: "EUR", toCurrency: "USD") { exchangeRate, error in
-            // Expect no error and valid exchangeRate data
-            XCTAssertNil(error, "Expected no error but received one.")
-            XCTAssertNotNil(exchangeRate, "Expected valid exchangeRate but did not receive one.")
-            XCTAssertEqual(exchangeRate?.rate, 1.2, "Exchange rate does not match expected value.")
-            XCTAssertEqual(exchangeRate?.baseCurrency, "EUR", "Base currency does not match expected value.")
-            XCTAssertEqual(exchangeRate?.targetCurrency, "USD", "Target currency does not match expected value.")
+            XCTAssertNil(error, "No error was expected but one was received.")
+            XCTAssertNotNil(exchangeRate, "Valid exchangeRate data was expected but none was received.")
+            XCTAssertEqual(exchangeRate?.rate, 1.2, "The received exchange rate does not match the expected value.")
+            XCTAssertEqual(exchangeRate?.baseCurrency, "EUR", "The received base currency does not match the expected value.")
+            XCTAssertEqual(exchangeRate?.targetCurrency, "USD", "The received target currency does not match the expected value.")
             expectation.fulfill()
         }
 
         waitForExpectations(timeout: 1)
-    }
-    
-    /// Tear down the test environment after each test.
-    /// Resets the service and sessionFake to nil to ensure a clean state for the next test.
-    override func tearDown() {
-        service = nil
-        sessionFake = nil
-        super.tearDown()
     }
 }
