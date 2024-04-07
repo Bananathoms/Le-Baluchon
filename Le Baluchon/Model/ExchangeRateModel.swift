@@ -14,7 +14,8 @@ struct ExchangeRateResponse: Codable {
     let date: String // The date of the last update of the exchange rates.
 }
 
-struct ExchangeRate {
+/// <#Description#>
+struct ExchangeRate: Codable {
     let baseCurrency: String
     let targetCurrency: String
     let rate: Double
