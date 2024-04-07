@@ -12,16 +12,21 @@ class TranslationService {
     private let apiKey: String
     private let baseUrlString: String
     private let session: URLSession
+    private var urlEncoder: ((String) -> String?)
     
     /// Initializes a new TranslationService.
     /// - Parameters:
     ///   - apiKey: The API key for the Google Translate API.
     ///   - baseUrlString: The base URL string for the Google Translate API.
     ///   - session: The URLSession to use for network requests. Defaults to `.shared` for production use.
-    init(apiKey: String = "AIzaSyCxSsQc8WHyOCRDgO-8UbFMZOScvgE0FH0", baseUrlString: String = "https://translation.googleapis.com/language/translate/v2", session: URLSession = .shared) {
+    init(apiKey: String = "AIzaSyCxSsQc8WHyOCRDgO-8UbFMZOScvgE0FH0",
+         baseUrlString: String = "https://translation.googleapis.com/language/translate/v2",
+         session: URLSession = .shared,
+         urlEncoder: @escaping (String) -> String? = { $0.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) }) {
         self.apiKey = apiKey
         self.baseUrlString = baseUrlString
         self.session = session
+        self.urlEncoder = urlEncoder
     }
     
     /// Translates text from a source language to a target language using the Google Translate API.

@@ -91,4 +91,59 @@ class TranslationServiceTests: XCTestCase {
             XCTFail("Decoding failed: \(error)")
         }
     }
+    
+    /// Tests the service's handling of an empty response, simulating a situation where no data is returned from the server.
+    func testTranslateWithEmptyResponse() {
+        // Given
+        sessionMock.data = Data() // Aucune donnée
+        let expectation = self.expectation(description: "Translate text with empty response.")
+
+        // When
+        service.translate(text: "Salut", from: "fr", to: "en") { result, error in
+            // Then
+            XCTAssertNil(result, "Expected no result for an empty response.")
+            XCTAssertNotNil(error, "Expected an error for an empty response.")
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 1.0, handler: nil)
+    }
+    
+    /// Verifies the behavior of the translation service when receiving a malformed JSON response, ensuring that an error is returned.
+    func testTranslateWithMalformedResponse() {
+        // Given
+        let malformedData = "This is not JSON".data(using: .utf8)!
+        sessionMock.data = malformedData
+        let expectation = self.expectation(description: "Translate text with malformed response.")
+
+        // When
+        service.translate(text: "Bonjour", from: "fr", to: "en") { result, error in
+            // Then
+            XCTAssertNil(result, "Expected no result for a malformed response.")
+            XCTAssertNotNil(error, "Expected an error for a malformed response.")
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 1.0, handler: nil)
+    }
+    
+    /// Simulates the failure of URL encoding the input text, ensuring the service properly handles and reports the error.
+    func testTranslateWithEncodingFailure() {
+        // Given
+        let service = TranslationService(session: sessionMock, urlEncoder: { _ in return nil as String? })
+        
+        let expectation = self.expectation(description: "Completion handler called with encoding failure.")
+        
+        // When
+        service.translate(text: "This will not encode", from: "fr", to: "en") { result, error in
+            // Then
+            XCTAssertNil(result, "Expected no result due to encoding failure.")
+            XCTAssertNotNil(error, "Expected an error due to encoding failure.")
+            expectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1.0, handler: nil)
+    }
+
+    
 }

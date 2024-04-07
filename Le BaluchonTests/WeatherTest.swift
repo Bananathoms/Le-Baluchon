@@ -75,4 +75,107 @@ class WeatherServiceTests: XCTestCase {
 
         waitForExpectations(timeout: 1)
     }
+    
+    /// Tests handling of invalid JSON data to ensure proper error handling.
+    func testFetchWeatherInvalidJSON() {
+        // Setup fake response with invalid JSON data
+        let invalidJSONData = "Invalid JSON".data(using: .utf8)!
+        sessionFake.data = invalidJSONData
+        sessionFake.response = HTTPURLResponse(url: URL(string: "https://api.openweathermap.org/")!, statusCode: 200, httpVersion: nil, headerFields: nil)
+
+        let expectation = self.expectation(description: "Fetching weather data with invalid JSON fails")
+
+        service.fetchWeather(forCity: "Paris") { weatherResponse, error in
+            XCTAssertNil(weatherResponse, "Expected no weatherResponse due to invalid JSON")
+            XCTAssertNotNil(error, "Expected an error due to invalid JSON")
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 1)
+    }
+
+    /// Tests the handling of an unexpected status code to ensure proper error handling.
+    func testFetchWeatherUnexpectedStatusCode() {
+        // Setup fake response with a 404 status code
+        let notFoundJSON = "{\"message\":\"city not found\"}".data(using: .utf8)!
+        sessionFake.data = notFoundJSON
+        sessionFake.response = HTTPURLResponse(url: URL(string: "https://api.openweathermap.org/")!, statusCode: 404, httpVersion: nil, headerFields: nil)
+
+        let expectation = self.expectation(description: "Fetching weather data with unexpected status code fails")
+
+        service.fetchWeather(forCity: "Atlantis") { weatherResponse, error in
+            XCTAssertNil(weatherResponse, "Expected no weatherResponse due to 404 status code")
+            XCTAssertNotNil(error, "Expected an error due to 404 status code")
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 1)
+    }
+
+    /// Tests that completion handler is called on the main thread if necessary.
+    func testFetchWeatherCompletionCalledOnMainThread() {
+        let jsonData = """
+        {
+            "weather": [{"id": 800, "main": "Clear", "description": "clear sky", "icon": "01d"}],
+            "main": {"temp": 22.0, "feels_like": 21.0, "temp_min": 20.0, "temp_max": 23.0, "pressure": 1012, "humidity": 60},
+            "name": "Paris"
+        }
+        """.data(using: .utf8)!
+        sessionFake.data = jsonData
+        sessionFake.response = HTTPURLResponse(url: URL(string: "https://api.openweathermap.org/")!, statusCode: 200, httpVersion: nil, headerFields: nil)
+
+        let expectation = self.expectation(description: "Completion handler called on main thread")
+
+        service.fetchWeather(forCity: "Paris") { _, _ in
+            XCTAssertTrue(Thread.isMainThread, "Completion handler should be called on main thread")
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 1)
+    }
+
+    /// Tests that an invalid URL results in the correct error being returned.
+    func testFetchWeatherWithInvalidURL() {
+        // Configurez le mock URLSession pour simuler une condition d'URL invalide
+        // Dans ce cas, nous simulons simplement une réponse avec une erreur spécifique
+        let expectedErrorCode = 1
+        let error = NSError(domain: "WeatherService", code: expectedErrorCode, userInfo: nil)
+        sessionFake.error = error
+
+        let expectation = self.expectation(description: "Completion handler called with URL error.")
+
+        // Testez la méthode fetchWeather avec une URL connue pour être invalide
+        service.fetchWeather(forCity: "InvalidCity") { weatherResponse, error in
+            XCTAssertNil(weatherResponse, "Expected no weatherResponse for an invalid URL.")
+            XCTAssertNotNil(error, "Expected an error for an invalid URL.")
+            if let error = error as NSError? {
+                XCTAssertEqual(error.code, expectedErrorCode, "Error code does not match expected value.")
+            }
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 1.0, handler: nil)
+    }
+    
+    /// Tests the handling of a network response that returns no data.
+    func testFetchWeatherNoDataReceived() {
+        sessionFake.data = nil
+        sessionFake.response = HTTPURLResponse(url: URL(string: "https://api.openweathermap.org/")!, statusCode: 200, httpVersion: nil, headerFields: nil)
+        sessionFake.error = nil
+
+        let expectation = self.expectation(description: "Completion handler called with no data error.")
+
+        service.fetchWeather(forCity: "Paris") { weatherResponse, error in
+            XCTAssertNil(weatherResponse, "Expected no weatherResponse due to no data received.")
+            XCTAssertNotNil(error, "Expected an error due to no data received.")
+            if let error = error as NSError? {
+                XCTAssertEqual(error.domain, "WeatherService")
+                XCTAssertEqual(error.code, 2, "Expected 'No data received' error code.")
+                XCTAssertEqual(error.userInfo[NSLocalizedDescriptionKey] as? String, "No data received")
+            }
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 1.0, handler: nil)
+    }
 }

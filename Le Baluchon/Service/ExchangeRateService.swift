@@ -9,14 +9,13 @@ import Foundation
 
 /// Service responsible for fetching and managing exchange rates from the Fixer.io API.
 class ExchangeRateService {
-    // API key to access the Fixer.io API.
-    private let apiKey = "8ab60a4a125337ce98010667e48c33c3"
-    // Session used for network calls.
+    private let apiKey: String
+    private let baseUrlString: String
     private let session: URLSession
-    
-    /// Initializes the service with a specific session for testing or uses URLSession.shared by default.
-    /// - Parameter session: The URLSession to use for network calls.
-    init(session: URLSession = URLSession.shared) {
+
+    init(apiKey: String = "8ab60a4a125337ce98010667e48c33c3", baseUrlString: String = "http://data.fixer.io/api/", session: URLSession = .shared) {
+        self.apiKey = apiKey
+        self.baseUrlString = baseUrlString
         self.session = session
     }
     
@@ -35,7 +34,7 @@ class ExchangeRateService {
     
     /// Attempts to load the last saved exchange rate from UserDefaults.
     /// - Returns: The last saved exchange rate if available, otherwise nil.
-    private func loadLastExchangeRate() -> ExchangeRate? {
+    func loadLastExchangeRate() -> ExchangeRate? {
         let defaults = UserDefaults.standard
         if let savedExchangeRate = defaults.object(forKey: lastExchangeRateKey) as? Data {
             let decoder = JSONDecoder()

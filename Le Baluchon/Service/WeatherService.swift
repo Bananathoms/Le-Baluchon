@@ -9,13 +9,19 @@ import Foundation
 
 /// Manages fetching weather data from the OpenWeatherMap API.
 class WeatherService {
-    private let apiKey = "abe459e1d44b33ea60ce9f7a1d51d105"
-    private let baseUrl = "https://api.openweathermap.org/data/2.5/weather"
+    private let apiKey: String
+    private let baseUrl: String
     private var session: URLSession
-    
-    // Ajoutez un paramètre de session avec une valeur par défaut à URLSession.shared pour le rendre testable.
-    init(session: URLSession = URLSession.shared) {
+
+    /// Initializes a new WeatherService.
+    /// - Parameters:
+    ///   - session: The URLSession to use for network requests. Defaults to `.shared` for production use.
+    ///   - apiKey: The API key for authenticating requests to the OpenWeatherMap API.
+    ///   - baseUrl: The base URL for the OpenWeatherMap API endpoints.
+    init(session: URLSession = URLSession.shared, apiKey: String = "abe459e1d44b33ea60ce9f7a1d51d105", baseUrl: String = "https://api.openweathermap.org/data/2.5/weather") {
         self.session = session
+        self.apiKey = apiKey
+        self.baseUrl = baseUrl
     }
     
     /// Fetches weather data for a given city and executes a completion closure with the results.
