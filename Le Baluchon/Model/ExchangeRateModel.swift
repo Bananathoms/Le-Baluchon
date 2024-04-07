@@ -35,9 +35,9 @@ extension ExchangeRate {
         self.date = date
     }
     
-    /// <#Description#>
-    /// - Parameter amount: <#amount description#>
-    /// - Returns: <#description#>
+    /// Converts an amount from the base currency to the target currency using the exchange rate.
+    /// - Parameter amount: The amount in the base currency to be converted.
+    /// - Returns: The equivalent amount in the target currency, based on the current exchange rate.
     func convert(amount: Double) -> Double {
         return amount * rate
     }
