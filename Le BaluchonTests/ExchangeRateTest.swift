@@ -95,4 +95,23 @@ class ExchangeRateServiceTests: XCTestCase {
 
         waitForExpectations(timeout: 1)
     }
+    
+    /// Tests the `convert` method of the `ExchangeRate` model to ensure it accurately converts an amount from the base currency to the target currency using the specified exchange rate.
+    func testConvert() {
+        // Given: Setup the initial conditions with a specific exchange rate between EUR (base currency) and USD (target currency).
+        let baseCurrency = "EUR"
+        let targetCurrency = "USD"
+        let rate: Double = 1.2
+        let exchangeRate = ExchangeRate(baseCurrency: baseCurrency, targetCurrency: targetCurrency, rate: rate, date: Date())
+
+        // The amount in the base currency (EUR) that we want to convert to the target currency (USD).
+        let amountToConvert: Double = 100
+
+        // When: Perform the conversion using the exchange rate's convert method.
+        let convertedAmount = exchangeRate.convert(amount: amountToConvert)
+
+        // Then: Check if the converted amount matches the expected amount.
+        let expectedAmount = amountToConvert * rate
+        XCTAssertEqual(convertedAmount, expectedAmount, "The converted amount should match the expected amount.")
+    }
 }
