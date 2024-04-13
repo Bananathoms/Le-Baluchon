@@ -7,75 +7,107 @@
 
 import UIKit
 
-class WeatherViewController: UIViewController {
+import UIKit
 
-    @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var currentTemperatureLabel: UILabel!
-    @IBOutlet weak var weatherDescriptionLabel: UILabel!
-    @IBOutlet weak var weatherIconImageView: UIImageView!
-    @IBOutlet weak var minTemperatureLabel: UILabel!
-    @IBOutlet weak var maxTemperatureLabel: UILabel!
+/// A view controller responsible for displaying weather information for two cities, a home city and a destination city.
+class WeatherViewController: UIViewController {
     
-    // Weather model instance to fetch data from the OpenWeatherMap API
+    // Outlets for home city weather information
+    @IBOutlet weak var homeCityName: UILabel!
+    @IBOutlet weak var homeWeatherIcon: UIImageView!
+    @IBOutlet weak var homeActualTemp: UILabel!
+    @IBOutlet weak var homeWeatherDescription: UILabel!
+    @IBOutlet weak var homeHumidityRate: UILabel!
+    @IBOutlet weak var homeMinTemp: UILabel!
+    @IBOutlet weak var homeMaxTemp: UILabel!
+    
+    // Outlets for destination city weather information
+    @IBOutlet weak var destinationCityName: UILabel!
+    @IBOutlet weak var destinationWeatherIcon: UIImageView!
+    @IBOutlet weak var destinationActualTemp: UILabel!
+    @IBOutlet weak var destinationWeatherDescription: UILabel!
+    @IBOutlet weak var destinationHumidityRate: UILabel!
+    @IBOutlet weak var destinationMinTemp: UILabel!
+    @IBOutlet weak var destinationMaxTemp: UILabel!
+    
+    // Instance of WeatherService to fetch weather data
     let weatherService = WeatherService()
     
+    // Initializes the view controller and triggers the retrieval of weather data for specified cities.
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Performs an initial request to get weather data for a specific city upon view loading.
-        fetchWeatherData(forCity: "Paris")
+        // Fetch weather for both cities
+        self.fetchWeather(forCity: "Paris", isHome: true)
+        self.fetchWeather(forCity: "New York", isHome: false)
     }
-    /// Fetches weather data for a specified city and updates the UI accordingly.
-    /// - Parameter city: The name of the city to retrieve weather data for.
-    func fetchWeatherData(forCity city: String) {
-        weatherService.fetchWeather(forCity: city) { [weak self] weatherResponse, error in
+    
+    ///  Fetches weather data for a specified city and updates the UI accordingly.
+    /// - Parameters:
+    ///   - city: The name of the city to retrieve weather data for.
+    ///   - isHome: A boolean indicating if the city is the home city (true) or the destination city (false).
+    private func fetchWeather(forCity city: String, isHome: Bool) {
+        self.weatherService.fetchWeather(forCity: city) { [weak self] response, error in
             DispatchQueue.main.async {
                 if let error = error {
-                    // Displays an appropriate message in case of an error.
-                    print("Erreur lors de la récupération des données météo: \(error.localizedDescription)")
+                    print("Error fetching weather: \(error)")
+                    return
+                }
+                guard let weatherData = response else {
+                    print("No weather data available")
                     return
                 }
                 
-                // Handle the case where no result is returned.
-                guard let weatherResponse = weatherResponse else {
-                    print("Aucune donnée météo disponible.")
-                    return
+                // Update UI based on which city the data is for
+                if isHome {
+                    self?.updateUI(with: weatherData, isHome: true)
+                } else {
+                    self?.updateUI(with: weatherData, isHome: false)
                 }
-                
-                // Update the UI with the received weather data.
-                self?.updateUI(with: weatherResponse)
             }
         }
     }
     
     /// Updates the UI with the provided weather data.
-    /// - Parameter weatherData: The weather data to display.
-    func updateUI(with weatherData: WeatherResponse) {
-        locationLabel.text = weatherData.name
-        currentTemperatureLabel.text = "\(weatherData.main.temp)°C"
-        weatherDescriptionLabel.text = weatherData.weather.first?.description.capitalized
-        minTemperatureLabel.text = "Min: \(weatherData.main.tempMin)°C"
-        maxTemperatureLabel.text = "Max: \(weatherData.main.tempMax)°C"
+    /// - Parameters:
+    ///   - weatherData: The weather data to display.
+    ///   - isHome: A boolean indicating if the data is for the home city (true) or the destination city (false).
+    private func updateUI(with weatherData: WeatherResponse, isHome: Bool) {
+        let cityLabel = isHome ? homeCityName : destinationCityName
+        let tempLabel = isHome ? homeActualTemp : destinationActualTemp
+        let descriptionLabel = isHome ? homeWeatherDescription : destinationWeatherDescription
+        let humidityLabel = isHome ? homeHumidityRate : destinationHumidityRate
+        let minTempLabel = isHome ? homeMinTemp : destinationMinTemp
+        let maxTempLabel = isHome ? homeMaxTemp : destinationMaxTemp
+        let iconImageView = isHome ? homeWeatherIcon : destinationWeatherIcon
         
-        // Downloads and displays the weather icon based on the received icon code.
+        cityLabel?.text = weatherData.name
+        tempLabel?.text = "\(weatherData.main.temp)°C"
+        descriptionLabel?.text = weatherData.weather.first?.description.capitalized
+        humidityLabel?.text = "Humidity: \(weatherData.main.humidity)%"
+        minTempLabel?.text = "Min: \(weatherData.main.tempMin)°C"
+        maxTempLabel?.text = "Max: \(weatherData.main.tempMax)°C"
+        
         if let iconCode = weatherData.weather.first?.icon {
-            downloadWeatherIcon(withCode: iconCode)
+            self.fetchIcon(for: iconCode, imageView: iconImageView)
         }
     }
     
-    /// Downloads the weather icon from the provided icon code and updates `weatherIconImageView`.
-    /// - Parameter iconCode: The icon code of the weather to download.
-    func downloadWeatherIcon(withCode iconCode: String) {
-        let urlString = "https://openweathermap.org/img/wn/\(iconCode)@2x.png"
-        guard let url = URL(string: urlString) else { return }
+    /// Downloads the weather icon from the provided icon code and updates the specified imageView.
+    /// - Parameters:
+    ///   - iconCode: The icon code of the weather to download.
+    ///   - imageView: The UIImageView to update with the icon.
+    private func fetchIcon(for iconCode: String, imageView: UIImageView?) {
+        let iconURLString = "https://openweathermap.org/img/wn/\(iconCode)@2x.png"
+        guard let url = URL(string: iconURLString) else { return }
         
-        let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-            guard let data = data, error == nil else { return }
-            DispatchQueue.main.async {
-                // Creates a UIImage from the downloaded data and updates the UIImageView.
-                self?.weatherIconImageView.image = UIImage(data: data)
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let data = data, error == nil {
+                DispatchQueue.main.async {
+                    imageView?.image = UIImage(data: data)
+                }
             }
-        }
-        task.resume()
+        }.resume()
     }
 }
+

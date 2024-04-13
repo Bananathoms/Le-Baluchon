@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DE09A8552BC842E20047FF83 /* URLSessionFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8CA62BC246BB003F5CF9 /* URLSessionFake.swift */; };
+		DE09A8752BCAD4850047FF83 /* WeatherCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE09A8742BCAD4850047FF83 /* WeatherCardView.swift */; };
 		DEDA8C5E2BB731EF003F5CF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8C5D2BB731EF003F5CF9 /* AppDelegate.swift */; };
 		DEDA8C602BB731EF003F5CF9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8C5F2BB731EF003F5CF9 /* SceneDelegate.swift */; };
 		DEDA8C652BB731EF003F5CF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEDA8C632BB731EF003F5CF9 /* Main.storyboard */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DE09A8742BCAD4850047FF83 /* WeatherCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCardView.swift; sourceTree = "<group>"; };
 		DEDA8C5A2BB731EF003F5CF9 /* Le Baluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Le Baluchon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEDA8C5D2BB731EF003F5CF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DEDA8C5F2BB731EF003F5CF9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 			children = (
 				DEDA8C682BB731F2003F5CF9 /* LaunchScreen.storyboard */,
 				DEDA8C632BB731EF003F5CF9 /* Main.storyboard */,
+				DE09A8742BCAD4850047FF83 /* WeatherCardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEDA8C5E2BB731EF003F5CF9 /* AppDelegate.swift in Sources */,
+				DE09A8752BCAD4850047FF83 /* WeatherCardView.swift in Sources */,
 				DEDA8C922BB73E2F003F5CF9 /* WeatherViewController.swift in Sources */,
 				DEDA8CA52BC1B65E003F5CF9 /* WeatherService.swift in Sources */,
 				DEDA8C9A2BB79AD1003F5CF9 /* ExchangeRateModel.swift in Sources */,
