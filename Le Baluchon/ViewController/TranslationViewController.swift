@@ -10,6 +10,8 @@ import UIKit
 /// View controller responsible for text translation.
 class TranslationViewController: UIViewController {
 
+    @IBOutlet weak var targetLanguageLabel: UILabel!
+    @IBOutlet weak var sourceLanguageLabel: UILabel!
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var translateButton: UIButton!
     @IBOutlet weak var resultLabel: UILabel!
@@ -17,10 +19,20 @@ class TranslationViewController: UIViewController {
     // Model for translation
     let translationService = TranslationService()
     
+    // Current language settings
+    var sourceLanguageCode = "fr"
+    var targetLanguageCode = "en"
+    
     /// Called after the controller's view is loaded. Used for initial setup.
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Perform any additional setup after loading the view.
+        self.updateLanguageLabels()
+    }
+    
+    /// Updates the language labels on the interface.
+    func updateLanguageLabels() {
+        self.sourceLanguageLabel.text = "French"  // Update as needed for dynamic language names
+        self.targetLanguageLabel.text = "English" // Update as needed for dynamic language names
     }
     
     /// Action triggered by the translation button
@@ -28,7 +40,7 @@ class TranslationViewController: UIViewController {
     @IBAction func translateButtonTapped(_ sender: UIButton) {
         // Checks that the text field is not empty
         guard let sourceText = inputTextField.text, !sourceText.isEmpty else {
-            self.resultLabel.text = "Veuillez entrer du texte à traduire."
+            self.resultLabel.text = "Please enter text to translate."
             return
         }
         
@@ -37,7 +49,7 @@ class TranslationViewController: UIViewController {
             DispatchQueue.main.async {
                 if let error = error {
                     // In case of an error during translation, display an error message.
-                    self?.resultLabel.text = "Erreur de traduction : \(error.localizedDescription)"
+                    self?.resultLabel.text = "Translation error : \(error.localizedDescription)"
                     return
                 }
                 
@@ -45,10 +57,9 @@ class TranslationViewController: UIViewController {
                 if let translatedText = translatedText {
                     self?.resultLabel.text = translatedText.translatedText
                 } else {
-                    self?.resultLabel.text = "Traduction non disponible."
+                    self?.resultLabel.text = "Translation unavailable."
                 }
             }
         }
     }
-    
 }

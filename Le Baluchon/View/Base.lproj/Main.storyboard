@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -133,7 +132,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exchange Rate :" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wb3-Em-POo">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exchange Rate:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wb3-Em-POo">
                                 <rect key="frame" x="16" y="94" width="361" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="GM9-hf-f8y"/>
@@ -187,7 +186,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Home :" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7pA-Gi-aaE">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Home:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7pA-Gi-aaE">
                                 <rect key="frame" x="16" y="85" width="109" height="37.333333333333343"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="32"/>
                                 <color key="textColor" name="CardColor"/>
@@ -251,7 +250,7 @@
                                 </subviews>
                                 <color key="backgroundColor" name="CardColor"/>
                                 <constraints>
-                                    <constraint firstItem="AP9-55-rde" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Gay-ZY-8Ao" secondAttribute="trailing" symbolic="YES" id="19Q-8D-XWy"/>
+                                    <constraint firstItem="AP9-55-rde" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Gay-ZY-8Ao" secondAttribute="trailing" constant="8" symbolic="YES" id="19Q-8D-XWy"/>
                                     <constraint firstItem="VbU-nT-ZHG" firstAttribute="top" secondItem="pI2-na-BbM" secondAttribute="top" constant="48" id="BCu-Hu-M2Z"/>
                                     <constraint firstItem="Gay-ZY-8Ao" firstAttribute="leading" secondItem="tF4-Lh-kdE" secondAttribute="trailing" constant="28.666666666666686" id="Eks-A0-3FA"/>
                                     <constraint firstAttribute="bottom" secondItem="QsM-K6-sR5" secondAttribute="bottom" constant="83.333333333333343" id="IcV-bd-6bb"/>
@@ -426,53 +425,85 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Traducteur" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t12-zU-nC1">
-                                <rect key="frame" x="154" y="69" width="84" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qIy-ts-PeO">
-                                <rect key="frame" x="153" y="409" width="87" height="35"/>
+                                <rect key="frame" x="149" y="538" width="95" height="35"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Traduire"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Translate"/>
                                 <connections>
                                     <action selector="translateButtonTapped:" destination="UY5-LL-ncq" eventType="touchUpInside" id="ma2-rD-sas"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vp9-AX-6AQ">
-                                <rect key="frame" x="16" y="185" width="361" height="34"/>
+                                <rect key="frame" x="16" y="483" width="361" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Traduction" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rtU-du-ga5">
-                                <rect key="frame" x="155" y="510" width="82" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Translation in English:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RvP-f7-7Jw">
+                                <rect key="frame" x="16" y="72" width="361" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="f9G-e2-ugX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="32"/>
+                                <color key="textColor" name="CardColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="orU-sh-w6i" customClass="RoundedCardView" customModule="Le_Baluchon" customModuleProvider="target">
+                                <rect key="frame" x="16" y="134" width="361" height="279"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter a text to translate in the textfield below" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rtU-du-ga5">
+                                        <rect key="frame" x="20" y="17" width="333" height="237"/>
+                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="32"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="CardColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="rtU-du-ga5" secondAttribute="bottom" constant="25" id="3Is-Io-gq9"/>
+                                    <constraint firstItem="rtU-du-ga5" firstAttribute="trailing" secondItem="orU-sh-w6i" secondAttribute="trailingMargin" id="AsE-U7-0Wd"/>
+                                    <constraint firstItem="rtU-du-ga5" firstAttribute="leading" secondItem="orU-sh-w6i" secondAttribute="leading" constant="20" id="EhQ-Vb-4hh"/>
+                                    <constraint firstItem="rtU-du-ga5" firstAttribute="top" secondItem="orU-sh-w6i" secondAttribute="top" constant="17" id="d56-HB-DN2"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Translate From French:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t12-zU-nC1">
+                                <rect key="frame" x="16" y="437" width="361" height="37.333333333333314"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="32"/>
+                                <color key="textColor" name="CardColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bRa-Lb-ef4"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="MainColor"/>
                         <constraints>
-                            <constraint firstItem="bRa-Lb-ef4" firstAttribute="trailing" secondItem="qIy-ts-PeO" secondAttribute="trailing" constant="153" id="Cbi-Nc-PcX"/>
-                            <constraint firstItem="bRa-Lb-ef4" firstAttribute="trailing" secondItem="vp9-AX-6AQ" secondAttribute="trailing" constant="16" id="DYw-1x-MZO"/>
-                            <constraint firstItem="t12-zU-nC1" firstAttribute="top" secondItem="bRa-Lb-ef4" secondAttribute="top" constant="10" id="ELi-W4-Ewd"/>
-                            <constraint firstItem="qIy-ts-PeO" firstAttribute="leading" secondItem="bRa-Lb-ef4" secondAttribute="leading" constant="153" id="P8D-LY-F9w"/>
-                            <constraint firstItem="vp9-AX-6AQ" firstAttribute="top" secondItem="t12-zU-nC1" secondAttribute="bottom" constant="95" id="XrC-vk-hLx"/>
-                            <constraint firstItem="bRa-Lb-ef4" firstAttribute="trailing" secondItem="t12-zU-nC1" secondAttribute="trailing" constant="155" id="YYq-rp-t0N"/>
-                            <constraint firstItem="rtU-du-ga5" firstAttribute="leading" secondItem="bRa-Lb-ef4" secondAttribute="leading" constant="155" id="k7C-W4-MSD"/>
-                            <constraint firstItem="qIy-ts-PeO" firstAttribute="top" secondItem="vp9-AX-6AQ" secondAttribute="bottom" constant="190" id="kV5-bb-xpR"/>
-                            <constraint firstItem="vp9-AX-6AQ" firstAttribute="leading" secondItem="bRa-Lb-ef4" secondAttribute="leading" constant="16" id="okJ-QX-VU4"/>
-                            <constraint firstItem="rtU-du-ga5" firstAttribute="top" secondItem="qIy-ts-PeO" secondAttribute="bottom" constant="66" id="rfh-XU-7Qv"/>
-                            <constraint firstItem="bRa-Lb-ef4" firstAttribute="trailing" secondItem="rtU-du-ga5" secondAttribute="trailing" constant="156" id="scY-BK-BQE"/>
-                            <constraint firstItem="t12-zU-nC1" firstAttribute="leading" secondItem="bRa-Lb-ef4" secondAttribute="leading" constant="154" id="scm-U6-VCm"/>
+                            <constraint firstAttribute="bottom" secondItem="orU-sh-w6i" secondAttribute="bottom" constant="439" id="0tf-RS-05X"/>
+                            <constraint firstItem="RvP-f7-7Jw" firstAttribute="leading" secondItem="rbo-s4-uho" secondAttribute="leadingMargin" id="A8O-yH-b7l"/>
+                            <constraint firstItem="bRa-Lb-ef4" firstAttribute="bottom" secondItem="qIy-ts-PeO" secondAttribute="bottom" constant="196" id="GOx-1q-xUw"/>
+                            <constraint firstItem="qIy-ts-PeO" firstAttribute="leading" secondItem="bRa-Lb-ef4" secondAttribute="leading" constant="149" id="HE4-hc-usA"/>
+                            <constraint firstItem="qIy-ts-PeO" firstAttribute="centerX" secondItem="vp9-AX-6AQ" secondAttribute="centerX" id="Qia-Fs-Pzc"/>
+                            <constraint firstItem="qIy-ts-PeO" firstAttribute="centerX" secondItem="orU-sh-w6i" secondAttribute="centerX" id="R0X-06-KU7"/>
+                            <constraint firstItem="RvP-f7-7Jw" firstAttribute="leading" secondItem="vp9-AX-6AQ" secondAttribute="leading" id="Rec-nb-tsG"/>
+                            <constraint firstItem="t12-zU-nC1" firstAttribute="leading" secondItem="vp9-AX-6AQ" secondAttribute="leading" id="ZY0-bb-H3A"/>
+                            <constraint firstItem="RvP-f7-7Jw" firstAttribute="leading" secondItem="orU-sh-w6i" secondAttribute="leading" id="byx-C6-xZZ"/>
+                            <constraint firstItem="orU-sh-w6i" firstAttribute="top" secondItem="RvP-f7-7Jw" secondAttribute="bottom" constant="8" symbolic="YES" id="ihp-S8-jBL"/>
+                            <constraint firstItem="qIy-ts-PeO" firstAttribute="top" secondItem="vp9-AX-6AQ" secondAttribute="bottom" constant="21" id="kOL-99-dRh"/>
+                            <constraint firstItem="vp9-AX-6AQ" firstAttribute="top" secondItem="t12-zU-nC1" secondAttribute="bottom" constant="8.6666666666666856" id="laK-Ws-Inu"/>
+                            <constraint firstItem="qIy-ts-PeO" firstAttribute="centerX" secondItem="rbo-s4-uho" secondAttribute="centerX" id="lv0-32-qg1"/>
+                            <constraint firstItem="t12-zU-nC1" firstAttribute="trailing" secondItem="vp9-AX-6AQ" secondAttribute="trailing" id="ozT-xI-JO7"/>
+                            <constraint firstItem="RvP-f7-7Jw" firstAttribute="top" secondItem="bRa-Lb-ef4" secondAttribute="top" constant="13" id="rNY-Un-Mcw"/>
+                            <constraint firstItem="qIy-ts-PeO" firstAttribute="centerX" secondItem="RvP-f7-7Jw" secondAttribute="centerX" id="t90-qz-9Wi"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Traducteur" id="1pA-ab-TQs"/>
                     <connections>
                         <outlet property="inputTextField" destination="vp9-AX-6AQ" id="2t5-eW-6kX"/>
                         <outlet property="resultLabel" destination="rtU-du-ga5" id="w5R-rd-1ll"/>
+                        <outlet property="sourceLanguageLabel" destination="t12-zU-nC1" id="uiK-ZB-RWf"/>
+                        <outlet property="targetLanguageLabel" destination="RvP-f7-7Jw" id="uSi-bf-TU3"/>
                         <outlet property="translateButton" destination="qIy-ts-PeO" id="aRJ-RY-JLW"/>
                     </connections>
                 </viewController>
@@ -488,8 +519,5 @@
         <namedColor name="MainColor">
             <color red="0.48452919721603394" green="0.66223472356796265" blue="0.76185262203216553" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>
