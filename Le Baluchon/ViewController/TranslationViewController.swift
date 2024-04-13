@@ -31,8 +31,8 @@ class TranslationViewController: UIViewController {
     
     /// Updates the language labels on the interface.
     func updateLanguageLabels() {
-        self.sourceLanguageLabel.text = "French"  // Update as needed for dynamic language names
-        self.targetLanguageLabel.text = "English" // Update as needed for dynamic language names
+        self.sourceLanguageLabel.text = "French"
+        self.targetLanguageLabel.text = "English"
     }
     
     /// Action triggered by the translation button
