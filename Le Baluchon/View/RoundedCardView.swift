@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 @IBDesignable
-class WeatherCardView: UIView {
+class RoundedCardView: UIView {
     @IBInspectable var cornerRadius: CGFloat {
         get { return layer.cornerRadius }
         set {
