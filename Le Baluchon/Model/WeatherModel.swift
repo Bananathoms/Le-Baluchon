@@ -11,8 +11,7 @@ import Foundation
 struct WeatherResponse: Codable {
     let main: WeatherMain
     let weather: [WeatherCondition]
-    let name: String // Corresponds to "name": "Paris"
-    // Add other properties as needed, based on the data you want to use
+    let name: String 
 }
 
 /// Contains main weather information, such as temperature and humidity.
