@@ -19,6 +19,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
+                        <segue destination="bVJ-3q-klg" kind="relationship" relationship="viewControllers" id="ckT-Tb-UFF"/>
                         <segue destination="gNv-YM-dYg" kind="relationship" relationship="viewControllers" id="A9J-5v-H4z"/>
                         <segue destination="6Cr-mX-TXR" kind="relationship" relationship="viewControllers" id="BU7-x4-xdL"/>
                         <segue destination="UY5-LL-ncq" kind="relationship" relationship="viewControllers" id="XoJ-L7-z3m"/>
@@ -28,7 +29,176 @@
             </objects>
             <point key="canvasLocation" x="894" y="-667"/>
         </scene>
-        <!--Taux de change-->
+        <!--Settings-->
+        <scene sceneID="K53-YR-4rx">
+            <objects>
+                <viewController id="bVJ-3q-klg" customClass="SettingsViewController" customModule="Le_Baluchon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xE0-sC-bac">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Le Baluchon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Xn-xg-yub">
+                                <rect key="frame" x="70" y="77" width="253" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="TPO-fN-ImU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="42"/>
+                                <color key="textColor" name="CardColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RG4-Qn-X83" customClass="RoundedCardView" customModule="Le_Baluchon" customModuleProvider="target">
+                                <rect key="frame" x="16" y="134" width="361" height="523"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Cities" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VSt-Ih-2Ba">
+                                        <rect key="frame" x="8" y="8" width="345" height="28"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="28" id="hEX-uJ-VM0"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Destination" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7mD-wj-V3h">
+                                        <rect key="frame" x="213" y="44" width="100" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FuS-QX-tyH">
+                                        <rect key="frame" x="70" y="44" width="52" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Currency" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQo-mW-dJf">
+                                        <rect key="frame" x="23" y="175" width="320" height="37"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="37" id="2mW-jt-I0V"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D48-e0-1d1">
+                                        <rect key="frame" x="70" y="220" width="52" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Destination" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D02-c6-F7P">
+                                        <rect key="frame" x="213" y="220" width="100" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Language" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WpS-kQ-DEO">
+                                        <rect key="frame" x="8" y="351" width="345" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rtz-Kq-44p">
+                                        <rect key="frame" x="70" y="396" width="52" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Destination" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UON-9P-uc9">
+                                        <rect key="frame" x="213" y="396" width="100" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FqQ-SB-jhf">
+                                        <rect key="frame" x="193" y="73" width="140" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jkI-na-wXy">
+                                        <rect key="frame" x="26" y="73" width="140" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b8U-dm-QBe">
+                                        <rect key="frame" x="72" y="115" width="57" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Set"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qdr-mv-vcn">
+                                        <rect key="frame" x="235" y="115" width="57" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Set"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Set a city" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9Q-yD-qkw">
+                                        <rect key="frame" x="65" y="146" width="71" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Set a city" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OUE-t6-lXy">
+                                        <rect key="frame" x="228" y="145" width="71" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FkR-mC-3pR">
+                                        <rect key="frame" x="26" y="238" width="145" height="105"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    </pickerView>
+                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2JL-Lh-RzO">
+                                        <rect key="frame" x="190" y="245" width="146" height="91"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    </pickerView>
+                                </subviews>
+                                <color key="backgroundColor" name="CardColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="k9U-h9-03v"/>
+                        <color key="backgroundColor" name="MainColor"/>
+                        <constraints>
+                            <constraint firstItem="5Xn-xg-yub" firstAttribute="top" secondItem="k9U-h9-03v" secondAttribute="top" constant="18" id="0d6-Zf-vIB"/>
+                            <constraint firstItem="k9U-h9-03v" firstAttribute="bottom" secondItem="RG4-Qn-X83" secondAttribute="bottom" constant="112" id="3oN-b0-h3k"/>
+                            <constraint firstItem="5Xn-xg-yub" firstAttribute="centerX" secondItem="RG4-Qn-X83" secondAttribute="centerX" id="9aY-Qk-Uew"/>
+                            <constraint firstItem="RG4-Qn-X83" firstAttribute="top" secondItem="5Xn-xg-yub" secondAttribute="bottom" constant="8" symbolic="YES" id="HqL-sv-ozf"/>
+                            <constraint firstItem="RG4-Qn-X83" firstAttribute="leading" secondItem="xE0-sC-bac" secondAttribute="leadingMargin" id="WKi-aq-RbL"/>
+                            <constraint firstItem="RG4-Qn-X83" firstAttribute="trailing" secondItem="xE0-sC-bac" secondAttribute="trailingMargin" id="tMl-bR-9hh"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" id="WpO-zN-Ow9"/>
+                    <connections>
+                        <outlet property="cityDestinationLabel" destination="OUE-t6-lXy" id="zSR-k6-cfi"/>
+                        <outlet property="cityDestinationSetButton" destination="qdr-mv-vcn" id="cLv-GF-UJ1"/>
+                        <outlet property="cityDestinationTextField" destination="FqQ-SB-jhf" id="uXm-Ox-wTN"/>
+                        <outlet property="cityHomeLabel" destination="U9Q-yD-qkw" id="JgH-c6-Q3M"/>
+                        <outlet property="cityHomeSetButton" destination="b8U-dm-QBe" id="6Gc-Zd-0RN"/>
+                        <outlet property="cityHomeTextfield" destination="jkI-na-wXy" id="i1K-XV-tja"/>
+                        <outlet property="currencyDestinationPicker" destination="2JL-Lh-RzO" id="Oi0-gd-e5P"/>
+                        <outlet property="currencyHomePicker" destination="FkR-mC-3pR" id="Ey8-vb-nc0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t80-4U-Nt5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-779.38931297709917" y="117.60563380281691"/>
+        </scene>
+        <!--Exchange Rate-->
         <scene sceneID="gmg-6S-pfm">
             <objects>
                 <viewController id="gNv-YM-dYg" customClass="ExchangeRateViewController" customModule="Le_Baluchon" customModuleProvider="target" sceneMemberID="viewController">
@@ -164,7 +334,7 @@
                             <constraint firstItem="YhY-23-gme" firstAttribute="top" secondItem="pqf-lU-Uy7" secondAttribute="bottom" constant="8" symbolic="YES" id="zcd-cM-yAH"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Taux de change" id="Rz5-7a-H8w"/>
+                    <tabBarItem key="tabBarItem" title="Exchange Rate" id="Rz5-7a-H8w"/>
                     <connections>
                         <outlet property="labelBase" destination="xMI-aE-zfh" id="8id-gj-2Rb"/>
                         <outlet property="labelRate" destination="LHb-ed-fXa" id="R6Z-cO-AgM"/>
@@ -176,9 +346,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gqm-cF-p58" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-135.1145038167939" y="117.60563380281691"/>
+            <point key="canvasLocation" x="370" y="118"/>
         </scene>
-        <!--Météo-->
+        <!--Weather-->
         <scene sceneID="hJB-L1-fBh">
             <objects>
                 <viewController id="6Cr-mX-TXR" customClass="WeatherViewController" customModule="Le_Baluchon" customModuleProvider="target" sceneMemberID="viewController">
@@ -395,7 +565,7 @@
                             <constraint firstItem="GfT-Hk-6Ds" firstAttribute="top" secondItem="pI2-na-BbM" secondAttribute="bottom" constant="32" id="zPM-cj-6Gl"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Météo" id="goi-jz-Ucb"/>
+                    <tabBarItem key="tabBarItem" title="Weather" id="goi-jz-Ucb"/>
                     <connections>
                         <outlet property="destinationActualTemp" destination="EtG-lg-EyH" id="9wN-se-QDj"/>
                         <outlet property="destinationCityName" destination="VsA-1W-Z67" id="SWB-7B-K0x"/>
@@ -415,9 +585,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="poG-rh-hL4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="893.89312977099235" y="117.60563380281691"/>
+            <point key="canvasLocation" x="1914" y="118"/>
         </scene>
-        <!--Traducteur-->
+        <!--Translation-->
         <scene sceneID="JjZ-Xk-CYL">
             <objects>
                 <viewController id="UY5-LL-ncq" customClass="TranslationViewController" customModule="Le_Baluchon" customModuleProvider="target" sceneMemberID="viewController">
@@ -498,7 +668,7 @@
                             <constraint firstItem="qIy-ts-PeO" firstAttribute="centerX" secondItem="RvP-f7-7Jw" secondAttribute="centerX" id="t90-qz-9Wi"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Traducteur" id="1pA-ab-TQs"/>
+                    <tabBarItem key="tabBarItem" title="Translation" id="1pA-ab-TQs"/>
                     <connections>
                         <outlet property="inputTextField" destination="vp9-AX-6AQ" id="2t5-eW-6kX"/>
                         <outlet property="resultLabel" destination="rtU-du-ga5" id="w5R-rd-1ll"/>
@@ -509,7 +679,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o7o-lB-xYd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1925.9541984732823" y="117.60563380281691"/>
+            <point key="canvasLocation" x="3056" y="118"/>
         </scene>
     </scenes>
     <resources>
