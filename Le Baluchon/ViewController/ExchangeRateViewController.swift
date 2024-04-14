@@ -9,7 +9,6 @@ import UIKit
 
 /// ViewController responsible for displaying and converting exchange rates.
 class ExchangeRateViewController: UIViewController {
-    
     @IBOutlet weak var labelBase: UILabel!
     @IBOutlet weak var labelTarget: UILabel!
     @IBOutlet weak var labelRate: UILabel!
@@ -23,11 +22,26 @@ class ExchangeRateViewController: UIViewController {
     /// Configures the ViewController after the view has loaded.
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadExchangeRate(fromCurrency: "EUR", toCurrency: "USD")
+
+        NotificationCenter.default.addObserver(self, selector: #selector(currencyChanged), name: UserDefaults.didChangeNotification, object: nil)
         
         // Adds a tap gesture recognizer to hide the keyboard when the user taps elsewhere on the screen.
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapGesture)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateCurrencySettings()
+    }
+    
+    @objc func currencyChanged() {
+        updateCurrencySettings()
+    }
+    
+    func updateCurrencySettings() {
+        let toCurrency = UserDefaults.standard.string(forKey: "DestinationCurrency") ?? "USD"
+        loadExchangeRate(fromCurrency: "EUR", toCurrency: toCurrency)
     }
     
     /// Method called to hide the keyboard.

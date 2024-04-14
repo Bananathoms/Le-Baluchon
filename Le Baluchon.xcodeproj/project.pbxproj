@@ -30,6 +30,7 @@
 		DEDA8CA92BC248E4003F5CF9 /* ExchangeRateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8CA82BC248E4003F5CF9 /* ExchangeRateTest.swift */; };
 		DEDA8CAD2BC2C958003F5CF9 /* WeatherTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8CAC2BC2C958003F5CF9 /* WeatherTest.swift */; };
 		DEDA8CAF2BC2C96C003F5CF9 /* TranslationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8CAE2BC2C96C003F5CF9 /* TranslationTest.swift */; };
+		DEF8035A2BCC02B800EDCD42 /* languages.json in Resources */ = {isa = PBXBuildFile; fileRef = DEF803592BCC02B800EDCD42 /* languages.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		DEDA8CA82BC248E4003F5CF9 /* ExchangeRateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateTest.swift; sourceTree = "<group>"; };
 		DEDA8CAC2BC2C958003F5CF9 /* WeatherTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTest.swift; sourceTree = "<group>"; };
 		DEDA8CAE2BC2C96C003F5CF9 /* TranslationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationTest.swift; sourceTree = "<group>"; };
+		DEF803592BCC02B800EDCD42 /* languages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = languages.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			children = (
 				DEDA8C662BB731F2003F5CF9 /* Assets.xcassets */,
 				DE09A8792BCB54160047FF83 /* currencies.json */,
+				DEF803592BCC02B800EDCD42 /* languages.json */,
 			);
 			path = Ressources;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEDA8C6A2BB731F2003F5CF9 /* LaunchScreen.storyboard in Resources */,
+				DEF8035A2BCC02B800EDCD42 /* languages.json in Resources */,
 				DEDA8C672BB731F2003F5CF9 /* Assets.xcassets in Resources */,
 				DE09A87A2BCB54160047FF83 /* currencies.json in Resources */,
 				DEDA8C652BB731EF003F5CF9 /* Main.storyboard in Resources */,

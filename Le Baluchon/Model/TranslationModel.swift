@@ -26,3 +26,17 @@ struct TranslationResult: Codable {
     let sourceLanguage: String
     let targetLanguage: String
 }
+
+struct LanguagesList: Codable {
+    let data: LanguagesData
+}
+
+struct LanguagesData: Codable {
+    let languages: [Language]
+}
+
+struct Language: Codable {
+    let language: String
+    let name: String
+}
+

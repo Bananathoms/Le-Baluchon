@@ -37,9 +37,26 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let homeCity = UserDefaults.standard.string(forKey: "SelectedHomeCity") ?? "Paris"
+        let destinationCity = UserDefaults.standard.string(forKey: "SelectedDestinationCity") ?? "New York"
+        
         // Fetch weather for both cities
-        self.fetchWeather(forCity: "Paris", isHome: true)
+        self.fetchWeather(forCity: homeCity, isHome: true)
+        self.fetchWeather(forCity: destinationCity, isHome: false)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateWeatherInfo), name: NSNotification.Name("HomeCityUpdated"), object: nil)
+        
+        updateWeatherInfo()
+    }
+    
+    @objc func updateWeatherInfo() {
+        let homeCity = UserDefaults.standard.string(forKey: "SelectedHomeCity") ?? "Paris"  // Paris comme valeur par défaut
+        self.fetchWeather(forCity: homeCity, isHome: true)
         self.fetchWeather(forCity: "New York", isHome: false)
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     ///  Fetches weather data for a specified city and updates the UI accordingly.
