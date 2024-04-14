@@ -45,16 +45,19 @@ class WeatherViewController: UIViewController {
         self.fetchWeather(forCity: destinationCity, isHome: false)
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateWeatherInfo), name: NSNotification.Name("HomeCityUpdated"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateWeatherInfo), name: NSNotification.Name("DestinationCityUpdated"), object: nil)
         
         updateWeatherInfo()
     }
     
     @objc func updateWeatherInfo() {
-        let homeCity = UserDefaults.standard.string(forKey: "SelectedHomeCity") ?? "Paris"  // Paris comme valeur par défaut
+        let homeCity = UserDefaults.standard.string(forKey: "SelectedHomeCity") ?? "Paris"
+        let destinationCity = UserDefaults.standard.string(forKey: "SelectedDestinationCity") ?? "New York"
+        
         self.fetchWeather(forCity: homeCity, isHome: true)
-        self.fetchWeather(forCity: "New York", isHome: false)
+        self.fetchWeather(forCity: destinationCity, isHome: false)
     }
-
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -74,7 +77,6 @@ class WeatherViewController: UIViewController {
                     print("No weather data available")
                     return
                 }
-                
                 // Update UI based on which city the data is for
                 if isHome {
                     self?.updateUI(with: weatherData, isHome: true)

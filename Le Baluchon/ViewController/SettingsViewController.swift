@@ -54,21 +54,21 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     /// Handles setting the home city from a UITextField to a UILabel.
     /// - Parameter sender: The UIButton that triggered this action.
     @IBAction func setCityHome(_ sender: UIButton) {
-        // Save the input text to UserDefaults with a key to retrieve it later
-        UserDefaults.standard.set(cityHomeTextfield.text, forKey: "SelectedHomeCity")
-        // Update the label that displays the home city in the UI
-        self.cityHomeLabel.text = self.cityHomeTextfield.text
-        // Ensure all changes are saved immediately
+        let defaultHomeCity = "Paris"
+        let homeCity = cityHomeTextfield.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ?? true ? defaultHomeCity : cityHomeTextfield.text!
+        UserDefaults.standard.set(homeCity, forKey: "SelectedHomeCity")
+        self.cityHomeLabel.text = homeCity
         UserDefaults.standard.synchronize()
-        // Post a notification to inform the app that the home city has been updated
         NotificationCenter.default.post(name: NSNotification.Name("HomeCityUpdated"), object: nil)
     }
     
     /// Handles setting the destination city from a UITextField to a UILabel.
     /// - Parameter sender: The UIButton that triggered this action.
     @IBAction func setCityDestination(_ sender: UIButton) {
-        UserDefaults.standard.set(cityDestinationTextField.text, forKey: "SelectedDestinationCity")
-        self.cityDestinationLabel.text = self.cityDestinationTextField.text
+        let defaultDestinationCity = "New York"
+        let destinationCity = cityDestinationTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ?? true ? defaultDestinationCity : cityDestinationTextField.text!
+        UserDefaults.standard.set(destinationCity, forKey: "SelectedDestinationCity")
+        self.cityDestinationLabel.text = destinationCity
         UserDefaults.standard.synchronize()
         NotificationCenter.default.post(name: NSNotification.Name("DestinationCityUpdated"), object: nil)
     }
