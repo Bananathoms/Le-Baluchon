@@ -136,6 +136,16 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
             self.destinationLanguages = languageList.data.languages
             self.homeLanguagePicker.reloadAllComponents()
             self.destinationLanguagePicker.reloadAllComponents()
+            
+            // Set default selections
+            if let defaultHomeIndex = self.homeLanguages.firstIndex(where: { $0.language == "fr" }) {
+                self.homeLanguagePicker.selectRow(defaultHomeIndex, inComponent: 0, animated: false)
+                self.pickerView(homeLanguagePicker, didSelectRow: defaultHomeIndex, inComponent: 0)
+            }
+            if let defaultDestinationIndex = self.destinationLanguages.firstIndex(where: { $0.language == "en" }) {
+                self.destinationLanguagePicker.selectRow(defaultDestinationIndex, inComponent: 0, animated: false)
+                self.pickerView(destinationLanguagePicker, didSelectRow: defaultDestinationIndex, inComponent: 0)
+            }
         }
     }
     
@@ -168,13 +178,19 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     ///   - row: The zero-indexed position of the row for which the title is requested. This index is used to retrieve data from either the `currencies` or `homeLanguages` arrays.
     ///   - component: The zero-indexed position of the component within the picker view. In this setup, there is only one component.
     /// - Returns: A formatted string that represents the content of the row in the picker view, or nil if no data is available for that row.
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView == self.currencyDestinationPicker {
-            return "\(currencies[row].name) - \(currencies[row].code)"
-        } else if pickerView == self.homeLanguagePicker || pickerView == self.destinationLanguagePicker {
-            return "\(homeLanguages[row].name) (\(homeLanguages[row].language))"
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let label = (view as? UILabel) ?? UILabel()
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textAlignment = .center
+        label.numberOfLines = 1
+
+        if pickerView == currencyDestinationPicker {
+            label.text = "\(currencies[row].name) - \(currencies[row].code)"
+        } else if pickerView == homeLanguagePicker || pickerView == destinationLanguagePicker {
+            label.text = "\(homeLanguages[row].name) (\(homeLanguages[row].language))"
         }
-        return nil
+
+        return label
     }
     
     /// Called when a row is selected in one of the picker views.
