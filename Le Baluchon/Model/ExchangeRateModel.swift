@@ -22,6 +22,15 @@ struct ExchangeRate: Codable {
     let date: Date // The date when this exchange rate was last updated.
 }
 
+struct CurrencyList: Codable {
+    let symbols: [String: String]
+}
+
+struct Currency: Codable {
+    let code: String
+    let name: String
+}
+
 extension ExchangeRate {
     /// Creates an `ExchangeRate` instance from an `ExchangeRateResponse` object and a specified target currency.
     /// - Parameters:

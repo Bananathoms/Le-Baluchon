@@ -10,6 +10,7 @@
 		DE09A8552BC842E20047FF83 /* URLSessionFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8CA62BC246BB003F5CF9 /* URLSessionFake.swift */; };
 		DE09A8752BCAD4850047FF83 /* RoundedCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE09A8742BCAD4850047FF83 /* RoundedCardView.swift */; };
 		DE09A8772BCAF5960047FF83 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE09A8762BCAF5960047FF83 /* SettingsViewController.swift */; };
+		DE09A87A2BCB54160047FF83 /* currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = DE09A8792BCB54160047FF83 /* currencies.json */; };
 		DEDA8C5E2BB731EF003F5CF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8C5D2BB731EF003F5CF9 /* AppDelegate.swift */; };
 		DEDA8C602BB731EF003F5CF9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8C5F2BB731EF003F5CF9 /* SceneDelegate.swift */; };
 		DEDA8C652BB731EF003F5CF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEDA8C632BB731EF003F5CF9 /* Main.storyboard */; };
@@ -51,6 +52,7 @@
 /* Begin PBXFileReference section */
 		DE09A8742BCAD4850047FF83 /* RoundedCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCardView.swift; sourceTree = "<group>"; };
 		DE09A8762BCAF5960047FF83 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		DE09A8792BCB54160047FF83 /* currencies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = currencies.json; sourceTree = "<group>"; };
 		DEDA8C5A2BB731EF003F5CF9 /* Le Baluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Le Baluchon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEDA8C5D2BB731EF003F5CF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DEDA8C5F2BB731EF003F5CF9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +104,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DE09A8782BCB53D60047FF83 /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				DEDA8C662BB731F2003F5CF9 /* Assets.xcassets */,
+				DE09A8792BCB54160047FF83 /* currencies.json */,
+			);
+			path = Ressources;
+			sourceTree = "<group>";
+		};
 		DEDA8C512BB731EF003F5CF9 = {
 			isa = PBXGroup;
 			children = (
@@ -131,7 +142,7 @@
 				DEDA8C902BB7362B003F5CF9 /* ViewController */,
 				DEDA8C972BB74675003F5CF9 /* Model */,
 				DEDA8CA12BC1B622003F5CF9 /* Service */,
-				DEDA8C662BB731F2003F5CF9 /* Assets.xcassets */,
+				DE09A8782BCB53D60047FF83 /* Ressources */,
 				DEDA8C6B2BB731F2003F5CF9 /* Info.plist */,
 			);
 			path = "Le Baluchon";
@@ -304,6 +315,7 @@
 			files = (
 				DEDA8C6A2BB731F2003F5CF9 /* LaunchScreen.storyboard in Resources */,
 				DEDA8C672BB731F2003F5CF9 /* Assets.xcassets in Resources */,
+				DE09A87A2BCB54160047FF83 /* currencies.json in Resources */,
 				DEDA8C652BB731EF003F5CF9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

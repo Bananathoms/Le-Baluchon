@@ -23,7 +23,7 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     @IBOutlet weak var currencyDestinationPicker: UIPickerView!
     
     // List of currencies
-    let currencies = ["USD", "EUR", "JPY", "GBP", "AUD", "CAD", "CHF", "CNY", "SEK", "NZD"]
+    var currencies: [Currency] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +32,19 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         currencyHomePicker.dataSource = self
         currencyDestinationPicker.delegate = self
         currencyDestinationPicker.dataSource = self
+        loadCurrencies()
+    }
+    
+    private func loadCurrencies() {
+        // Supposons que `currencyData` soit votre JSON converti en type Data.
+        let jsonDecoder = JSONDecoder()
+        if let url = Bundle.main.url(forResource: "currencies", withExtension: "json"),
+           let jsonData = try? Data(contentsOf: url),
+           let currencyList = try? jsonDecoder.decode(CurrencyList.self, from: jsonData) {
+            self.currencies = currencyList.symbols.map { Currency(code: $0.key, name: $0.value) }
+            self.currencyHomePicker.reloadAllComponents()
+            self.currencyDestinationPicker.reloadAllComponents()
+        }
     }
     
     // UIPickerViewDataSource
@@ -44,7 +57,7 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     }
     
     // UIPickerViewDelegate
-    @objc func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return currencies[row]
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return "\(currencies[row].code)"
     }
 }
