@@ -117,8 +117,6 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
            let currencyList = try? jsonDecoder.decode(CurrencyList.self, from: jsonData) {
             self.currencies = currencyList.symbols.map { Currency(code: $0.key, name: $0.value) }
             self.currencyDestinationPicker.reloadAllComponents()
-            
-            // Définir "USD" comme sélection par défaut si disponible
             if let usdIndex = currencies.firstIndex(where: { $0.code == "USD" }) {
                 self.currencyDestinationPicker.selectRow(usdIndex, inComponent: 0, animated: false)
                 self.pickerView(currencyDestinationPicker, didSelectRow: usdIndex, inComponent: 0)
@@ -136,8 +134,7 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
             self.destinationLanguages = languageList.data.languages
             self.homeLanguagePicker.reloadAllComponents()
             self.destinationLanguagePicker.reloadAllComponents()
-            
-            // Set default selections
+
             if let defaultHomeIndex = self.homeLanguages.firstIndex(where: { $0.language == "fr" }) {
                 self.homeLanguagePicker.selectRow(defaultHomeIndex, inComponent: 0, animated: false)
                 self.pickerView(homeLanguagePicker, didSelectRow: defaultHomeIndex, inComponent: 0)
