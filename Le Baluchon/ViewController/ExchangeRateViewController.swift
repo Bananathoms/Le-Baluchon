@@ -77,9 +77,12 @@ class ExchangeRateViewController: UIViewController {
     /// Updates the UI with the fetched exchange rate.
     /// - Parameter exchangeRate: The exchange rate to display.
     func updateUI(with exchangeRate: ExchangeRate) {
+        
+        let roundedRate = exchangeRate.roundedRate(rate: exchangeRate.rate)
+        
         self.labelBase.text = "Base Currency: \(exchangeRate.baseCurrency)"
         self.labelTarget.text = "Target Currency: \(exchangeRate.targetCurrency)"
-        self.labelRate.text = "1 \(exchangeRate.baseCurrency) = \(exchangeRate.rate) \(exchangeRate.targetCurrency)"
+        self.labelRate.text = "1 \(exchangeRate.baseCurrency) = \(roundedRate) \(exchangeRate.targetCurrency)"
         self.labeldate.text = "Last Update: \(formatDateToString(exchangeRate.date))"
     }
     
@@ -91,8 +94,8 @@ class ExchangeRateViewController: UIViewController {
             return
         }
         
-        let convertedAmount = amount * exchangeRate.rate
-        labelResult.text = "\(convertedAmount) \(exchangeRate.targetCurrency)"
+        let convertedAmount = self.currentExchangeRate?.convert(amount: amount)
+        labelResult.text = "\(convertedAmount ?? 0) \(exchangeRate.targetCurrency)"
     }
     
     /// Converts a Date object into a formatted string for display.
