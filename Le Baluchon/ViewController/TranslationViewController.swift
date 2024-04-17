@@ -28,10 +28,19 @@ class TranslationViewController: UIViewController {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(updateLanguageLabels), name: NSNotification.Name("LanguagePreferenceChanged"), object: nil)
         self.updateLanguageLabels()
+        
+        // Adds a tap gesture recognizer to hide the keyboard when the user taps elsewhere on the screen.
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    /// Method called to hide the keyboard.
+    @objc func hideKeyboard() {
+        view.endEditing(true)
     }
     
     /// Updates the language labels on the interface.

@@ -39,6 +39,15 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         self.setupPickers()
         self.loadCurrencies()
         self.loadLanguages()
+        
+        // Adds a tap gesture recognizer to hide the keyboard when the user taps elsewhere on the screen.
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    /// Method called to hide the keyboard.
+    @objc func hideKeyboard() {
+        view.endEditing(true)
     }
     
     /// Configures all UIPickerView delegates and data sources.

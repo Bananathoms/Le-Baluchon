@@ -32,16 +32,16 @@ class ExchangeRateViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateCurrencySettings()
+        self.updateCurrencySettings()
     }
     
     @objc func currencyChanged() {
-        updateCurrencySettings()
+        self.updateCurrencySettings()
     }
     
     func updateCurrencySettings() {
         let toCurrency = UserDefaults.standard.string(forKey: "DestinationCurrency") ?? "USD"
-        loadExchangeRate(fromCurrency: "EUR", toCurrency: toCurrency)
+        self.loadExchangeRate(fromCurrency: "EUR", toCurrency: toCurrency)
     }
     
     /// Method called to hide the keyboard.

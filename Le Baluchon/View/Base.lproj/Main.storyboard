@@ -70,7 +70,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FqQ-SB-jhf">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Destination City" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FqQ-SB-jhf">
                                         <rect key="frame" x="193" y="73.333333333333343" width="140" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="140" id="PiO-dn-DxC"/>
@@ -78,7 +78,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jkI-na-wXy">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Home city" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jkI-na-wXy">
                                         <rect key="frame" x="26" y="73" width="140" height="34.666666666666657"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="140" id="7il-9S-gD0"/>
@@ -366,7 +366,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ba-DO-jO6">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter an amount to convert" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ba-DO-jO6">
                                 <rect key="frame" x="16" y="289" width="361" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -694,32 +694,38 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qIy-ts-PeO">
-                                <rect key="frame" x="149" y="538" width="95" height="35"/>
+                                <rect key="frame" x="128" y="336.66666666666669" width="137" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Translate"/>
                                 <connections>
                                     <action selector="translateButtonTapped:" destination="UY5-LL-ncq" eventType="touchUpInside" id="ma2-rD-sas"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vp9-AX-6AQ">
-                                <rect key="frame" x="16" y="483" width="361" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a text to translate" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vp9-AX-6AQ">
+                                <rect key="frame" x="16" y="294.66666666666669" width="361" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Translation in English:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RvP-f7-7Jw">
-                                <rect key="frame" x="16" y="72" width="361" height="54"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Translation in English:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RvP-f7-7Jw">
+                                <rect key="frame" x="16" y="59" width="361" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="54" id="f9G-e2-ugX"/>
+                                    <constraint firstAttribute="height" constant="50" id="6hf-Ln-ZuK"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="32"/>
                                 <color key="textColor" name="CardColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Translate From French:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t12-zU-nC1">
+                                <rect key="frame" x="16" y="244.66666666666663" width="361" height="50"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="32"/>
+                                <color key="textColor" name="CardColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="orU-sh-w6i" customClass="RoundedCardView" customModule="Le_Baluchon" customModuleProvider="target">
-                                <rect key="frame" x="16" y="134" width="361" height="279"/>
+                                <rect key="frame" x="16" y="108.99999999999999" width="361" height="135.66666666666663"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter a text to translate in the textfield below" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rtU-du-ga5">
-                                        <rect key="frame" x="20" y="17" width="333" height="237"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter a text to translate in the textfield below" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rtU-du-ga5">
+                                        <rect key="frame" x="8" y="32.000000000000007" width="345" height="71.666666666666686"/>
                                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="32"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -727,10 +733,10 @@
                                 </subviews>
                                 <color key="backgroundColor" name="CardColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="rtU-du-ga5" secondAttribute="bottom" constant="25" id="3Is-Io-gq9"/>
-                                    <constraint firstItem="rtU-du-ga5" firstAttribute="trailing" secondItem="orU-sh-w6i" secondAttribute="trailingMargin" id="AsE-U7-0Wd"/>
-                                    <constraint firstItem="rtU-du-ga5" firstAttribute="leading" secondItem="orU-sh-w6i" secondAttribute="leading" constant="20" id="EhQ-Vb-4hh"/>
-                                    <constraint firstItem="rtU-du-ga5" firstAttribute="top" secondItem="orU-sh-w6i" secondAttribute="top" constant="17" id="d56-HB-DN2"/>
+                                    <constraint firstAttribute="bottom" secondItem="rtU-du-ga5" secondAttribute="bottom" constant="32" id="EaV-y3-dcj"/>
+                                    <constraint firstItem="rtU-du-ga5" firstAttribute="leading" secondItem="orU-sh-w6i" secondAttribute="leading" constant="8" id="Gbm-3C-fOy"/>
+                                    <constraint firstItem="rtU-du-ga5" firstAttribute="top" secondItem="orU-sh-w6i" secondAttribute="top" constant="32" id="b51-wG-Fh9"/>
+                                    <constraint firstAttribute="trailing" secondItem="rtU-du-ga5" secondAttribute="trailing" constant="8" id="omr-yD-pzd"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -738,32 +744,26 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Translate From French:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t12-zU-nC1">
-                                <rect key="frame" x="16" y="437" width="361" height="37.333333333333314"/>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="32"/>
-                                <color key="textColor" name="CardColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bRa-Lb-ef4"/>
                         <color key="backgroundColor" name="MainColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="orU-sh-w6i" secondAttribute="bottom" constant="439" id="0tf-RS-05X"/>
-                            <constraint firstItem="RvP-f7-7Jw" firstAttribute="leading" secondItem="rbo-s4-uho" secondAttribute="leadingMargin" id="A8O-yH-b7l"/>
-                            <constraint firstItem="bRa-Lb-ef4" firstAttribute="bottom" secondItem="qIy-ts-PeO" secondAttribute="bottom" constant="196" id="GOx-1q-xUw"/>
-                            <constraint firstItem="qIy-ts-PeO" firstAttribute="leading" secondItem="bRa-Lb-ef4" secondAttribute="leading" constant="149" id="HE4-hc-usA"/>
-                            <constraint firstItem="qIy-ts-PeO" firstAttribute="centerX" secondItem="vp9-AX-6AQ" secondAttribute="centerX" id="Qia-Fs-Pzc"/>
-                            <constraint firstItem="qIy-ts-PeO" firstAttribute="centerX" secondItem="orU-sh-w6i" secondAttribute="centerX" id="R0X-06-KU7"/>
-                            <constraint firstItem="RvP-f7-7Jw" firstAttribute="leading" secondItem="vp9-AX-6AQ" secondAttribute="leading" id="Rec-nb-tsG"/>
-                            <constraint firstItem="t12-zU-nC1" firstAttribute="leading" secondItem="vp9-AX-6AQ" secondAttribute="leading" id="ZY0-bb-H3A"/>
-                            <constraint firstItem="RvP-f7-7Jw" firstAttribute="leading" secondItem="orU-sh-w6i" secondAttribute="leading" id="byx-C6-xZZ"/>
-                            <constraint firstItem="orU-sh-w6i" firstAttribute="top" secondItem="RvP-f7-7Jw" secondAttribute="bottom" constant="8" symbolic="YES" id="ihp-S8-jBL"/>
-                            <constraint firstItem="qIy-ts-PeO" firstAttribute="top" secondItem="vp9-AX-6AQ" secondAttribute="bottom" constant="21" id="kOL-99-dRh"/>
-                            <constraint firstItem="vp9-AX-6AQ" firstAttribute="top" secondItem="t12-zU-nC1" secondAttribute="bottom" constant="8.6666666666666856" id="laK-Ws-Inu"/>
-                            <constraint firstItem="qIy-ts-PeO" firstAttribute="centerX" secondItem="rbo-s4-uho" secondAttribute="centerX" id="lv0-32-qg1"/>
-                            <constraint firstItem="t12-zU-nC1" firstAttribute="trailing" secondItem="vp9-AX-6AQ" secondAttribute="trailing" id="ozT-xI-JO7"/>
-                            <constraint firstItem="RvP-f7-7Jw" firstAttribute="top" secondItem="bRa-Lb-ef4" secondAttribute="top" constant="13" id="rNY-Un-Mcw"/>
-                            <constraint firstItem="qIy-ts-PeO" firstAttribute="centerX" secondItem="RvP-f7-7Jw" secondAttribute="centerX" id="t90-qz-9Wi"/>
+                            <constraint firstItem="bRa-Lb-ef4" firstAttribute="trailing" secondItem="t12-zU-nC1" secondAttribute="trailing" constant="16" id="31D-rW-rZr"/>
+                            <constraint firstItem="qIy-ts-PeO" firstAttribute="top" secondItem="vp9-AX-6AQ" secondAttribute="bottom" constant="8" id="Fiy-EE-7d6"/>
+                            <constraint firstItem="RvP-f7-7Jw" firstAttribute="leading" secondItem="bRa-Lb-ef4" secondAttribute="leading" constant="16" id="IHh-BF-fPr"/>
+                            <constraint firstItem="t12-zU-nC1" firstAttribute="top" secondItem="orU-sh-w6i" secondAttribute="bottom" id="KrT-EC-Mxp"/>
+                            <constraint firstItem="bRa-Lb-ef4" firstAttribute="trailing" secondItem="vp9-AX-6AQ" secondAttribute="trailing" constant="16" id="LfO-8q-vHd"/>
+                            <constraint firstItem="bRa-Lb-ef4" firstAttribute="trailing" secondItem="orU-sh-w6i" secondAttribute="trailing" constant="16" id="Lgx-ae-i4T"/>
+                            <constraint firstItem="qIy-ts-PeO" firstAttribute="leading" secondItem="bRa-Lb-ef4" secondAttribute="leading" constant="128" id="Q5a-ci-hw8"/>
+                            <constraint firstItem="orU-sh-w6i" firstAttribute="leading" secondItem="bRa-Lb-ef4" secondAttribute="leading" constant="16" id="V5n-VF-ept"/>
+                            <constraint firstItem="orU-sh-w6i" firstAttribute="top" secondItem="RvP-f7-7Jw" secondAttribute="bottom" id="XJl-FR-Zom"/>
+                            <constraint firstItem="bRa-Lb-ef4" firstAttribute="trailing" secondItem="RvP-f7-7Jw" secondAttribute="trailing" constant="16" id="eNv-be-er3"/>
+                            <constraint firstItem="t12-zU-nC1" firstAttribute="leading" secondItem="bRa-Lb-ef4" secondAttribute="leading" constant="16" id="oUx-NY-Gfb"/>
+                            <constraint firstItem="vp9-AX-6AQ" firstAttribute="top" secondItem="t12-zU-nC1" secondAttribute="bottom" id="pA7-00-DXg"/>
+                            <constraint firstItem="RvP-f7-7Jw" firstAttribute="top" secondItem="bRa-Lb-ef4" secondAttribute="top" id="rNY-Un-Mcw"/>
+                            <constraint firstItem="t12-zU-nC1" firstAttribute="height" secondItem="RvP-f7-7Jw" secondAttribute="height" id="uKb-Kk-d7h"/>
+                            <constraint firstItem="vp9-AX-6AQ" firstAttribute="leading" secondItem="bRa-Lb-ef4" secondAttribute="leading" constant="16" id="xwR-uC-uz3"/>
+                            <constraint firstItem="bRa-Lb-ef4" firstAttribute="trailing" secondItem="qIy-ts-PeO" secondAttribute="trailing" constant="128" id="y91-Ey-bd0"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Translation" id="1pA-ab-TQs"/>
@@ -777,7 +777,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o7o-lB-xYd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3056" y="118"/>
+            <point key="canvasLocation" x="3055.7251908396947" y="117.60563380281691"/>
         </scene>
     </scenes>
     <resources>
