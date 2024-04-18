@@ -28,15 +28,13 @@ class TranslationServiceTests: XCTestCase {
         super.tearDown()
     }
     
+    /// Test urlEncoder
     func testURLEncoderClosure() {
-        // Given
         let inputText = "Bonjour, ça va ?"
-        let expectedEncodedText = "Bonjour,%20%C3%A7a%20va%20?" // Résultat attendu après encodage
+        let expectedEncodedText = "Bonjour,%20%C3%A7a%20va%20?"
         
-        // When
         let encodedText = service.urlEncoder(inputText)
         
-        // Then
         XCTAssertEqual(encodedText, expectedEncodedText, "Encoded text does not match expected value.")
     }
 
