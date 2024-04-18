@@ -42,13 +42,15 @@ extension ExchangeRate {
               let date = dateFormatter.date(from: response.date) else {
             return nil
         }
-        
         self.baseCurrency = response.base
         self.targetCurrency = targetCurrency
         self.rate = rate
         self.date = date
     }
     
+    /// Rounds the given exchange rate to two decimal places.
+    /// - Parameter rate: The exchange rate to be rounded.
+    /// - Returns: The rounded exchange rate.
     func roundedRate(rate:Double) -> Double {
         return (rate * 100).rounded() / 100
     }

@@ -92,8 +92,41 @@ class ExchangeRateServiceTests: XCTestCase {
             XCTAssertEqual(exchangeRate?.targetCurrency, "USD", "The received target currency does not match the expected value.")
             expectation.fulfill()
         }
-
         waitForExpectations(timeout: 1)
+    }
+    
+    // Test case for successful initialization
+    func testInitialization() {
+        let response = ExchangeRateResponse(rates: ["USD": 1.23], base: "EUR", date: "2024-04-17")
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+
+        let exchangeRate = ExchangeRate(from: response, targetCurrency: "USD", dateFormatter: dateFormatter)
+
+        XCTAssertNotNil(exchangeRate)
+        XCTAssertEqual(exchangeRate?.baseCurrency, "EUR")
+        XCTAssertEqual(exchangeRate?.targetCurrency, "USD")
+        XCTAssertEqual(exchangeRate?.rate, 1.23)
+        XCTAssertEqual(exchangeRate?.date, dateFormatter.date(from: "2024-04-17"))
+    }
+    
+    // Test case for failed initialization due to missing rate
+    func testInitializationMissingRate() {
+        let response = ExchangeRateResponse(rates: [:], base: "EUR", date: "2024-04-17")
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let exchangeRate = ExchangeRate(from: response, targetCurrency: "USD", dateFormatter: dateFormatter)
+        
+        XCTAssertNil(exchangeRate)
+    }
+    
+    
+    // Test case for rounding a rate
+    func testRoundedRate() {
+        let exchangeRate = ExchangeRate(baseCurrency: "EUR", targetCurrency: "USD", rate: 1.23456, date: Date())
+        let roundedRate = exchangeRate.roundedRate(rate: 1.23456)
+        XCTAssertEqual(roundedRate, 1.23)
     }
     
     /// Tests the `convert` method of the `ExchangeRate` model to ensure it accurately converts an amount from the base currency to the target currency using the specified exchange rate.
