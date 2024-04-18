@@ -30,15 +30,20 @@ class ExchangeRateViewController: UIViewController {
         view.addGestureRecognizer(tapGesture)
     }
     
+    /// Called before the view controller's view is about to be added to a view hierarchy and is visible to the user.
+    /// - Parameter animated: A Boolean value indicating whether the appearance of the view is being animated.
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // Updates the currency settings whenever the view is about to appear.
         self.updateCurrencySettings()
     }
     
+    /// Handles the notification when the currency is changed and triggers the update of currency settings.
     @objc func currencyChanged() {
         self.updateCurrencySettings()
     }
     
+    /// Updates the currency settings based on the user's selection.
     func updateCurrencySettings() {
         let toCurrency = UserDefaults.standard.string(forKey: "DestinationCurrency") ?? "USD"
         self.loadExchangeRate(fromCurrency: "EUR", toCurrency: toCurrency)
@@ -90,12 +95,12 @@ class ExchangeRateViewController: UIViewController {
     /// - Parameter sender: The button triggering the conversion action.
     @IBAction func convertTapped(_ sender: UIButton) {
         guard let amountText = textFieldAmount.text, let amount = Double(amountText), let exchangeRate = currentExchangeRate else {
-            labelResult.text = "Invalid input or exchange rate not loaded"
+            self.labelResult.text = "Invalid input or exchange rate not loaded"
             return
         }
         
         let convertedAmount = self.currentExchangeRate?.convert(amount: amount)
-        labelResult.text = "\(convertedAmount ?? 0) \(exchangeRate.targetCurrency)"
+        self.labelResult.text = "\(convertedAmount ?? 0) \(exchangeRate.targetCurrency)"
     }
     
     /// Converts a Date object into a formatted string for display.

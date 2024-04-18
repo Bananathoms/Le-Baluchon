@@ -47,7 +47,7 @@ class WeatherViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateWeatherInfo), name: NSNotification.Name("HomeCityUpdated"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateWeatherInfo), name: NSNotification.Name("DestinationCityUpdated"), object: nil)
         
-        updateWeatherInfo()
+        self.updateWeatherInfo()
     }
     
     @objc func updateWeatherInfo() {
@@ -108,25 +108,8 @@ class WeatherViewController: UIViewController {
         maxTempLabel?.text = "Max: \(weatherData.main.tempMax)°C"
         
         if let iconCode = weatherData.weather.first?.icon {
-            self.fetchIcon(for: iconCode, imageView: iconImageView)
+            self.weatherService.fetchIcon(for: iconCode, imageView: iconImageView)
         }
-    }
-    
-    /// Downloads the weather icon from the provided icon code and updates the specified imageView.
-    /// - Parameters:
-    ///   - iconCode: The icon code of the weather to download.
-    ///   - imageView: The UIImageView to update with the icon.
-    private func fetchIcon(for iconCode: String, imageView: UIImageView?) {
-        let iconURLString = "https://openweathermap.org/img/wn/\(iconCode)@2x.png"
-        guard let url = URL(string: iconURLString) else { return }
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let data = data, error == nil {
-                DispatchQueue.main.async {
-                    imageView?.image = UIImage(data: data)
-                }
-            }
-        }.resume()
     }
 }
 

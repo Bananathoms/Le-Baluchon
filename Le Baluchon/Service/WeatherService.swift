@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 /// Manages fetching weather data from the OpenWeatherMap API.
 class WeatherService {
@@ -54,5 +55,22 @@ class WeatherService {
         }
 
         task.resume()
+    }
+    
+    /// Downloads the weather icon from the provided icon code and updates the specified imageView.
+    /// - Parameters:
+    ///   - iconCode: The icon code of the weather to download.
+    ///   - imageView: The UIImageView to update with the icon.
+    func fetchIcon(for iconCode: String, imageView: UIImageView?) {
+        let iconURLString = "https://openweathermap.org/img/wn/\(iconCode)@2x.png"
+        guard let url = URL(string: iconURLString) else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let data = data, error == nil {
+                DispatchQueue.main.async {
+                    imageView?.image = UIImage(data: data)
+                }
+            }
+        }.resume()
     }
 }
