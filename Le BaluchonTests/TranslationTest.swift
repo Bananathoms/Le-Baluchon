@@ -27,6 +27,18 @@ class TranslationServiceTests: XCTestCase {
         self.sessionMock = nil
         super.tearDown()
     }
+    
+    func testURLEncoderClosure() {
+        // Given
+        let inputText = "Bonjour, ça va ?"
+        let expectedEncodedText = "Bonjour,%20%C3%A7a%20va%20?" // Résultat attendu après encodage
+        
+        // When
+        let encodedText = service.urlEncoder(inputText)
+        
+        // Then
+        XCTAssertEqual(encodedText, expectedEncodedText, "Encoded text does not match expected value.")
+    }
 
     /// Tests if translating text successfully calls the completion with correct translated text.
     func testTranslateSuccess() {
@@ -145,5 +157,4 @@ class TranslationServiceTests: XCTestCase {
         waitForExpectations(timeout: 1.0, handler: nil)
     }
 
-    
 }

@@ -12,7 +12,7 @@ class TranslationService {
     private let apiKey: String
     private let baseUrlString: String
     private let session: URLSession
-    private var urlEncoder: ((String) -> String?)
+    var urlEncoder: ((String) -> String?)
     
     /// Initializes a new TranslationService.
     /// - Parameters:
