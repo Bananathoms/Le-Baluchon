@@ -178,4 +178,20 @@ class WeatherServiceTests: XCTestCase {
 
         waitForExpectations(timeout: 1.0, handler: nil)
     }
+    
+    /// Tests the `fetchIcon` method to ensure it properly downloads and sets the image for the given icon code.
+    func testFetchIcon() {
+        let imageView = UIImageView()
+
+        let imageData = UIImage(systemName: "sun.max")!.pngData()
+        sessionFake.data = imageData
+        sessionFake.response = HTTPURLResponse(url: URL(string: "https://openweathermap.org/")!, statusCode: 200, httpVersion: nil, headerFields: nil)
+
+        service.fetchIcon(for: "01d", imageView: imageView)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            XCTAssertNotNil(imageView.image, "Expected image to be set")
+            XCTAssertEqual(imageView.image, UIImage(data: imageData!), "Image does not match expected image")
+        }
+    }
 }
