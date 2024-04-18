@@ -24,7 +24,7 @@ class ExchangeRateService {
     
     /// Saves the last fetched exchange rate in UserDefaults for quick access without needing a network call.
     /// - Parameter exchangeRate: The exchange rate to save.
-    private func saveLastExchangeRate(_ exchangeRate: ExchangeRate) {
+    func saveLastExchangeRate(_ exchangeRate: ExchangeRate) {
         let defaults = UserDefaults.standard
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(exchangeRate) {

@@ -95,6 +95,71 @@ class ExchangeRateServiceTests: XCTestCase {
         waitForExpectations(timeout: 1)
     }
     
+    ///  Test loading the last exchange rate from UserDefaults when it is available.
+    func testLoadLastExchangeRateFromUserDefaults() {
+        let defaults = UserDefaults.standard
+        let savedExchangeRate = ExchangeRate(baseCurrency: "EUR", targetCurrency: "USD", rate: 1.2, date: Date())
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(savedExchangeRate) {
+            defaults.set(encoded, forKey: "lastExchangeRate")
+        }
+
+        let loadedExchangeRate = service.loadLastExchangeRate()
+
+        XCTAssertNotNil(loadedExchangeRate, "Expected to load last exchange rate from UserDefaults.")
+        XCTAssertEqual(loadedExchangeRate?.baseCurrency, "EUR", "Loaded base currency should match.")
+        XCTAssertEqual(loadedExchangeRate?.targetCurrency, "USD", "Loaded target currency should match.")
+        XCTAssertEqual(loadedExchangeRate?.rate, 1.2, "Loaded rate should match.")
+    }
+    
+    /// Test loading the last exchange rate when it is not available in UserDefaults.
+    func testLoadLastExchangeRateWhenNotAvailable() {
+        let loadedExchangeRate = service.loadLastExchangeRate()
+
+        XCTAssertNil(loadedExchangeRate, "Expected nil when last exchange rate is not available in UserDefaults.")
+    }
+    
+    /// Test fetching the exchange rate from UserDefaults when it is available.
+    func testFetchExchangeRateIfNeededFromUserDefaults() {
+        let lastExchangeRate = ExchangeRate(baseCurrency: "EUR", targetCurrency: "USD", rate: 1.2, date: Date())
+        service.saveLastExchangeRate(lastExchangeRate)
+
+        let expectation = self.expectation(description: "Fetch exchange rate from UserDefaults")
+        service.fetchExchangeRateIfNeeded(fromCurrency: "EUR", toCurrency: "USD") { exchangeRate, error in
+            XCTAssertNotNil(exchangeRate, "Expected to fetch exchange rate from UserDefaults.")
+            XCTAssertEqual(exchangeRate?.baseCurrency, "EUR", "Base currency should match.")
+            XCTAssertEqual(exchangeRate?.targetCurrency, "USD", "Target currency should match.")
+            XCTAssertEqual(exchangeRate?.rate, 1.2, "Exchange rate should match.")
+            XCTAssertNil(error, "No error was expected.")
+            expectation.fulfill()
+        }
+        waitForExpectations(timeout: 1)
+    }
+    
+    /// Test fetching the exchange rate from the network when it is not available in UserDefaults.
+    func testFetchExchangeRateIfNeededFromNetwork() {
+        UserDefaults.standard.removeObject(forKey: "lastExchangeRate")
+        let responseData = """
+        {
+            "rates": {"USD": 1.2},
+            "base": "EUR",
+            "date": "\(Date())"
+        }
+        """.data(using: .utf8)!
+        service = ExchangeRateService(session: URLSessionFake(data: responseData, response: nil, error: nil))
+
+        let expectation = self.expectation(description: "Fetch exchange rate from network")
+        service.fetchExchangeRateIfNeeded(fromCurrency: "EUR", toCurrency: "USD") { exchangeRate, error in
+            XCTAssertNotNil(exchangeRate, "Expected to fetch exchange rate from network.")
+            XCTAssertEqual(exchangeRate?.baseCurrency, "EUR", "Base currency should match.")
+            XCTAssertEqual(exchangeRate?.targetCurrency, "USD", "Target currency should match.")
+            XCTAssertEqual(exchangeRate?.rate, 1.2, "Exchange rate should match.")
+            XCTAssertNil(error, "No error was expected.")
+            expectation.fulfill()
+        }
+        waitForExpectations(timeout: 1)
+    }
+    
     // Test case for successful initialization
     func testInitialization() {
         let response = ExchangeRateResponse(rates: ["USD": 1.23], base: "EUR", date: "2024-04-17")
@@ -120,7 +185,6 @@ class ExchangeRateServiceTests: XCTestCase {
         
         XCTAssertNil(exchangeRate)
     }
-    
     
     // Test case for rounding a rate
     func testRoundedRate() {
