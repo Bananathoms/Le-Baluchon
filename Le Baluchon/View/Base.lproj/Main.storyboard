@@ -16,7 +16,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ntx-AR-Dqf">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="CardColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="bVJ-3q-klg" kind="relationship" relationship="viewControllers" id="ckT-Tb-UFF"/>
@@ -75,7 +75,9 @@
                                             <constraint firstAttribute="height" constant="24" id="NVI-uh-a9q"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Set"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Set">
+                                            <color key="baseBackgroundColor" name="ButtonColor"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="setCityHome:" destination="bVJ-3q-klg" eventType="touchUpInside" id="gz2-Ft-8gl"/>
                                         </connections>
@@ -87,7 +89,9 @@
                                             <constraint firstAttribute="height" constant="24" id="nki-HA-0zO"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Set"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Set">
+                                            <color key="baseBackgroundColor" name="ButtonColor"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="setCityDestination:" destination="bVJ-3q-klg" eventType="touchUpInside" id="bKy-A0-ipa"/>
                                         </connections>
@@ -171,7 +175,9 @@
                                             <constraint firstAttribute="height" constant="24" id="MP3-pN-yfm"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Set"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Set">
+                                            <color key="baseBackgroundColor" name="ButtonColor"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="setDestinationCurrency:" destination="bVJ-3q-klg" eventType="touchUpInside" id="UNb-ju-fbX"/>
                                         </connections>
@@ -230,7 +236,9 @@
                                             <constraint firstAttribute="height" constant="24" id="u8Y-VE-r3i"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Set"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Set">
+                                            <color key="baseBackgroundColor" name="ButtonColor"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="setHomeLanguage:" destination="bVJ-3q-klg" eventType="touchUpInside" id="LtD-le-A0B"/>
                                         </connections>
@@ -248,7 +256,9 @@
                                             <constraint firstAttribute="height" constant="24" id="AUG-Ab-6S6"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Set"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Set">
+                                            <color key="baseBackgroundColor" name="ButtonColor"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="setDestinationLanguage:" destination="bVJ-3q-klg" eventType="touchUpInside" id="iph-9Q-vZr"/>
                                         </connections>
@@ -335,7 +345,7 @@
                             <constraint firstItem="dox-Am-fDq" firstAttribute="leading" secondItem="k9U-h9-03v" secondAttribute="leading" constant="16" id="zKe-zn-Zt9"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="WpO-zN-Ow9"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="gearshape.fill" catalog="system" id="WpO-zN-Ow9"/>
                     <connections>
                         <outlet property="cityDestinationLabel" destination="gHQ-Gn-1WS" id="z0Z-rB-Og6"/>
                         <outlet property="cityDestinationSetButton" destination="yU5-aI-GmS" id="7gN-5H-QaK"/>
@@ -369,7 +379,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pqf-lU-Uy7">
                                 <rect key="frame" x="96" y="339" width="201" height="35"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Convert"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Convert">
+                                    <color key="baseBackgroundColor" name="ButtonColor"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="convertTapped:" destination="gNv-YM-dYg" eventType="touchUpInside" id="9Lg-zc-gf0"/>
                                 </connections>
@@ -482,7 +494,7 @@
                             <constraint firstItem="pqf-lU-Uy7" firstAttribute="top" secondItem="1ba-DO-jO6" secondAttribute="bottom" constant="16" id="zBv-Iy-wT7"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Exchange Rate" id="Rz5-7a-H8w"/>
+                    <tabBarItem key="tabBarItem" title="Exchange Rate" image="dollarsign.arrow.circlepath" catalog="system" id="Rz5-7a-H8w"/>
                     <connections>
                         <outlet property="labelBase" destination="xMI-aE-zfh" id="8id-gj-2Rb"/>
                         <outlet property="labelRate" destination="LHb-ed-fXa" id="R6Z-cO-AgM"/>
@@ -694,7 +706,7 @@
                             <constraint firstItem="GfT-Hk-6Ds" firstAttribute="top" secondItem="pI2-na-BbM" secondAttribute="bottom" id="zPM-cj-6Gl"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Weather" id="goi-jz-Ucb"/>
+                    <tabBarItem key="tabBarItem" title="Weather" image="cloud.fill" catalog="system" id="goi-jz-Ucb"/>
                     <connections>
                         <outlet property="destinationActualTemp" destination="62d-lB-kFF" id="tCf-Tf-n5a"/>
                         <outlet property="destinationCityName" destination="c4P-A8-fTr" id="gqd-aF-Lud"/>
@@ -727,7 +739,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qIy-ts-PeO">
                                 <rect key="frame" x="96" y="320.66666666666669" width="201" height="35"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Translate"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Translate">
+                                    <color key="baseBackgroundColor" name="ButtonColor"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="translateButtonTapped:" destination="UY5-LL-ncq" eventType="touchUpInside" id="ma2-rD-sas"/>
                                 </connections>
@@ -797,7 +811,7 @@
                             <constraint firstItem="bRa-Lb-ef4" firstAttribute="trailing" secondItem="qIy-ts-PeO" secondAttribute="trailing" constant="96" id="y91-Ey-bd0"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Translation" id="1pA-ab-TQs"/>
+                    <tabBarItem key="tabBarItem" title="Translation" image="character.bubble.fill.ja" catalog="system" id="1pA-ab-TQs"/>
                     <connections>
                         <outlet property="inputTextField" destination="vp9-AX-6AQ" id="2t5-eW-6kX"/>
                         <outlet property="resultLabel" destination="rtU-du-ga5" id="w5R-rd-1ll"/>
@@ -812,6 +826,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="character.bubble.fill.ja" catalog="system" width="128" height="110"/>
+        <image name="cloud.fill" catalog="system" width="128" height="87"/>
+        <image name="dollarsign.arrow.circlepath" catalog="system" width="128" height="112"/>
+        <image name="gearshape.fill" catalog="system" width="128" height="123"/>
+        <namedColor name="ButtonColor">
+            <color red="0.37144196033477783" green="0.49324625730514526" blue="0.57148683071136475" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="CardColor">
             <color red="0.75190252065658569" green="0.87210321426391602" blue="0.92950171232223511" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
