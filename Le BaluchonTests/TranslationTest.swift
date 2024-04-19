@@ -20,7 +20,6 @@ class TranslationServiceTests: XCTestCase {
         self.service = TranslationService(session: sessionMock)
     }
 
-
     /// Tears down the test environment after each test.
     override func tearDown() {
         self.service = nil
