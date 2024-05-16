@@ -81,11 +81,7 @@ class TranslationViewController: UIViewController {
                 }
                 
                 // Display the translated text or a message if the translation is not available.
-                if let translatedText = translatedText {
-                    self?.resultLabel.text = translatedText.translatedText
-                } else {
-                    self?.resultLabel.text = "Translation unavailable."
-                }
+                self?.resultLabel.text = translatedText?.translatedText ?? "Translation unavailable."
             }
         }
     }
