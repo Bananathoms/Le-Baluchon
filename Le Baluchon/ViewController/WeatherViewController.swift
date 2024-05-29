@@ -33,6 +33,9 @@ class WeatherViewController: UIViewController {
     // Instance of WeatherService to fetch weather data
     let weatherService = WeatherService()
     
+    var isHomeCityLoading = false
+    var isDestinationCityLoading = false
+    
     // Initializes the view controller and triggers the retrieval of weather data for specified cities.
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,16 +70,36 @@ class WeatherViewController: UIViewController {
     ///   - city: The name of the city to retrieve weather data for.
     ///   - isHome: A boolean indicating if the city is the home city (true) or the destination city (false).
     private func fetchWeather(forCity city: String, isHome: Bool) {
+        if isHome {
+            isHomeCityLoading = true
+        } else {
+            isDestinationCityLoading = true
+        }
+        
+        
         self.weatherService.fetchWeather(forCity: city) { [weak self] response, error in
             DispatchQueue.main.async {
+                if isHome {
+                    self?.isHomeCityLoading = false
+                } else {
+                    self?.isDestinationCityLoading = false
+                }
+                
                 if let error = error {
-                    print("Error fetching weather: \(error)")
+                    if !(self?.isHomeCityLoading ?? false) && !(self?.isDestinationCityLoading ?? false) {
+                        self?.showAlert(title: "Weather Error", message: "Error fetching weather: \(error.localizedDescription)")
+                    }
                     return
                 }
+                
                 guard let weatherData = response else {
-                    print("No weather data available")
+                    if !(self?.isHomeCityLoading ?? false) && !(self?.isDestinationCityLoading ?? false) {
+                        self?.showAlert(title: "Weather Error", message: "No weather data available for \(city).")
+                    }
                     return
                 }
+
+                
                 // Update UI based on which city the data is for
                 if isHome {
                     self?.updateUI(with: weatherData, isHome: true)

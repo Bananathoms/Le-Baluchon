@@ -63,8 +63,10 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     /// Handles setting the home city from a UITextField to a UILabel.
     /// - Parameter sender: The UIButton that triggered this action.
     @IBAction func setCityHome(_ sender: UIButton) {
-        let defaultHomeCity = "Paris"
-        let homeCity = cityHomeTextfield.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ?? true ? defaultHomeCity : cityHomeTextfield.text!
+        guard let homeCity = cityHomeTextfield.text?.trimmingCharacters(in: .whitespacesAndNewlines), !homeCity.isEmpty else {
+            self.showAlert(title: "Input Error", message: "Please enter a valid home city.")
+            return
+        }
         UserDefaults.standard.set(homeCity, forKey: "SelectedHomeCity")
         self.cityHomeLabel.text = homeCity
         UserDefaults.standard.synchronize()
@@ -74,8 +76,10 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     /// Handles setting the destination city from a UITextField to a UILabel.
     /// - Parameter sender: The UIButton that triggered this action.
     @IBAction func setCityDestination(_ sender: UIButton) {
-        let defaultDestinationCity = "New York"
-        let destinationCity = cityDestinationTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ?? true ? defaultDestinationCity : cityDestinationTextField.text!
+        guard let destinationCity = cityDestinationTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !destinationCity.isEmpty else {
+            self.showAlert(title: "Input Error", message: "Please enter a valid destination city.")
+            return
+        }
         UserDefaults.standard.set(destinationCity, forKey: "SelectedDestinationCity")
         self.cityDestinationLabel.text = destinationCity
         UserDefaults.standard.synchronize()
@@ -86,6 +90,10 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     /// - Parameter sender: The UIButton that triggered this action.
     @IBAction func setDestinationCurrency(_ sender: UIButton) {
         let selectedIndex = self.currencyDestinationPicker.selectedRow(inComponent: 0)
+        guard selectedIndex < self.currencies.count else {
+            self.showAlert(title: "Selection Error", message: "Please select a valid currency.")
+            return
+        }
         let selectedCurrency = self.currencies[selectedIndex].code
         self.currencyDestinationSelectedLabel.text = "Selected: \(currencies[selectedIndex].name) (\(selectedCurrency))"
         UserDefaults.standard.set(selectedCurrency, forKey: "DestinationCurrency")
@@ -97,6 +105,10 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     /// - Parameter sender: The UIButton that triggered this action.
     @IBAction func setHomeLanguage(_ sender: UIButton) {
         let selectedIndex = self.homeLanguagePicker.selectedRow(inComponent: 0)
+        guard selectedIndex < self.homeLanguages.count else {
+            self.showAlert(title: "Selection Error", message: "Please select a valid language.")
+            return
+        }
         let selectedLanguage = self.homeLanguages[selectedIndex]
         UserDefaults.standard.set(selectedLanguage.language, forKey: "SelectedHomeLanguageCode")
         UserDefaults.standard.set(selectedLanguage.name, forKey: "SelectedHomeLanguageName")
@@ -110,6 +122,10 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     /// - Parameter sender: The UIButton that triggered this action.
     @IBAction func setDestinationLanguage(_ sender: UIButton) {
         let selectedIndex = self.destinationLanguagePicker.selectedRow(inComponent: 0)
+        guard selectedIndex < self.destinationLanguages.count else {
+            self.showAlert(title: "Selection Error", message: "Please select a valid language.")
+            return
+        }
         let selectedLanguage = self.destinationLanguages[selectedIndex]
         UserDefaults.standard.set(selectedLanguage.language, forKey: "SelectedDestinationLanguageCode")
         UserDefaults.standard.set(selectedLanguage.name, forKey: "SelectedDestinationLanguageName")
@@ -120,10 +136,13 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     
     /// Loads currency data from a JSON file and updates the UIPickerView.
     private func loadCurrencies() {
-        let jsonDecoder = JSONDecoder()
-        if let url = Bundle.main.url(forResource: "currencies", withExtension: "json"),
-           let jsonData = try? Data(contentsOf: url),
-           let currencyList = try? jsonDecoder.decode(CurrencyList.self, from: jsonData) {
+            let jsonDecoder = JSONDecoder()
+            guard let url = Bundle.main.url(forResource: "currencies", withExtension: "json"),
+                  let jsonData = try? Data(contentsOf: url),
+                  let currencyList = try? jsonDecoder.decode(CurrencyList.self, from: jsonData) else {
+                self.showAlert(title: "Loading Error", message: "Unable to load currencies.")
+                return
+            }
             self.currencies = currencyList.symbols.map { Currency(code: $0.key, name: $0.value) }
             self.currencyDestinationPicker.reloadAllComponents()
             if let usdIndex = currencies.firstIndex(where: { $0.code == "USD" }) {
@@ -131,27 +150,28 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
                 self.pickerView(currencyDestinationPicker, didSelectRow: usdIndex, inComponent: 0)
             }
         }
-    }
     
     /// Loads language data from a JSON file and updates the UIPickerView for both home and destination languages.
     private func loadLanguages() {
         let jsonDecoder = JSONDecoder()
-        if let url = Bundle.main.url(forResource: "languages", withExtension: "json"),
-           let jsonData = try? Data(contentsOf: url),
-           let languageList = try? jsonDecoder.decode(LanguagesList.self, from: jsonData) {
-            self.homeLanguages = languageList.data.languages
-            self.destinationLanguages = languageList.data.languages
-            self.homeLanguagePicker.reloadAllComponents()
-            self.destinationLanguagePicker.reloadAllComponents()
+        guard let url = Bundle.main.url(forResource: "languages", withExtension: "json"),
+              let jsonData = try? Data(contentsOf: url),
+              let languageList = try? jsonDecoder.decode(LanguagesList.self, from: jsonData) else {
+            self.showAlert(title: "Loading Error", message: "Unable to load languages.")
+            return
+        }
+        self.homeLanguages = languageList.data.languages
+        self.destinationLanguages = languageList.data.languages
+        self.homeLanguagePicker.reloadAllComponents()
+        self.destinationLanguagePicker.reloadAllComponents()
 
-            if let defaultHomeIndex = self.homeLanguages.firstIndex(where: { $0.language == "fr" }) {
-                self.homeLanguagePicker.selectRow(defaultHomeIndex, inComponent: 0, animated: false)
-                self.pickerView(homeLanguagePicker, didSelectRow: defaultHomeIndex, inComponent: 0)
-            }
-            if let defaultDestinationIndex = self.destinationLanguages.firstIndex(where: { $0.language == "en" }) {
-                self.destinationLanguagePicker.selectRow(defaultDestinationIndex, inComponent: 0, animated: false)
-                self.pickerView(destinationLanguagePicker, didSelectRow: defaultDestinationIndex, inComponent: 0)
-            }
+        if let defaultHomeIndex = self.homeLanguages.firstIndex(where: { $0.language == "fr" }) {
+            self.homeLanguagePicker.selectRow(defaultHomeIndex, inComponent: 0, animated: false)
+            self.pickerView(homeLanguagePicker, didSelectRow: defaultHomeIndex, inComponent: 0)
+        }
+        if let defaultDestinationIndex = self.destinationLanguages.firstIndex(where: { $0.language == "en" }) {
+            self.destinationLanguagePicker.selectRow(defaultDestinationIndex, inComponent: 0, animated: false)
+            self.pickerView(destinationLanguagePicker, didSelectRow: defaultDestinationIndex, inComponent: 0)
         }
     }
     

@@ -11,6 +11,7 @@
 		DE09A8752BCAD4850047FF83 /* RoundedCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE09A8742BCAD4850047FF83 /* RoundedCardView.swift */; };
 		DE09A8772BCAF5960047FF83 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE09A8762BCAF5960047FF83 /* SettingsViewController.swift */; };
 		DE09A87A2BCB54160047FF83 /* currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = DE09A8792BCB54160047FF83 /* currencies.json */; };
+		DE86E0882C074322002B8ABB /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE86E0872C074322002B8ABB /* Extension+UIViewController.swift */; };
 		DEDA8C5E2BB731EF003F5CF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8C5D2BB731EF003F5CF9 /* AppDelegate.swift */; };
 		DEDA8C602BB731EF003F5CF9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDA8C5F2BB731EF003F5CF9 /* SceneDelegate.swift */; };
 		DEDA8C652BB731EF003F5CF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEDA8C632BB731EF003F5CF9 /* Main.storyboard */; };
@@ -54,6 +55,7 @@
 		DE09A8742BCAD4850047FF83 /* RoundedCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCardView.swift; sourceTree = "<group>"; };
 		DE09A8762BCAF5960047FF83 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		DE09A8792BCB54160047FF83 /* currencies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = currencies.json; sourceTree = "<group>"; };
+		DE86E0872C074322002B8ABB /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		DEDA8C5A2BB731EF003F5CF9 /* Le Baluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Le Baluchon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEDA8C5D2BB731EF003F5CF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DEDA8C5F2BB731EF003F5CF9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +118,14 @@
 			path = Ressources;
 			sourceTree = "<group>";
 		};
+		DE86E0892C07432D002B8ABB /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DE86E0872C074322002B8ABB /* Extension+UIViewController.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		DEDA8C512BB731EF003F5CF9 = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +151,7 @@
 			children = (
 				DEDA8C5D2BB731EF003F5CF9 /* AppDelegate.swift */,
 				DEDA8C5F2BB731EF003F5CF9 /* SceneDelegate.swift */,
+				DE86E0892C07432D002B8ABB /* Extension */,
 				DEDA8C8F2BB73621003F5CF9 /* View */,
 				DEDA8C902BB7362B003F5CF9 /* ViewController */,
 				DEDA8C972BB74675003F5CF9 /* Model */,
@@ -353,6 +364,7 @@
 				DEDA8C602BB731EF003F5CF9 /* SceneDelegate.swift in Sources */,
 				DEDA8C8E2BB734FD003F5CF9 /* ExchangeRateViewController.swift in Sources */,
 				DEDA8CA02BC1B617003F5CF9 /* TranslationService.swift in Sources */,
+				DE86E0882C074322002B8ABB /* Extension+UIViewController.swift in Sources */,
 				DEDA8C9C2BB8404C003F5CF9 /* TranslationModel.swift in Sources */,
 				DEDA8C9E2BB84822003F5CF9 /* WeatherModel.swift in Sources */,
 				DE09A8772BCAF5960047FF83 /* SettingsViewController.swift in Sources */,

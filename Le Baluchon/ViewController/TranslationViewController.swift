@@ -67,7 +67,7 @@ class TranslationViewController: UIViewController {
     @IBAction func translateButtonTapped(_ sender: UIButton) {
         // Checks that the text field is not empty
         guard let sourceText = inputTextField.text, !sourceText.isEmpty else {
-            self.resultLabel.text = "Please enter text to translate."
+            self.showAlert(title: "Input Error", message: "Please enter text to translate.")
             return
         }
         
@@ -76,7 +76,7 @@ class TranslationViewController: UIViewController {
             DispatchQueue.main.async {
                 if let error = error {
                     // In case of an error during translation, display an error message.
-                    self?.resultLabel.text = "Translation error : \(error.localizedDescription)"
+                    self?.showAlert(title: "Translation Error", message: error.localizedDescription)
                     return
                 }
                 

@@ -64,12 +64,12 @@ class ExchangeRateViewController: UIViewController {
                 guard let self = self else { return }
                 
                 if let error = error {
-                    self.labelRate.text = "Error: \(error.localizedDescription)"
+                    self.showAlert(title: "Error", message: "Error fetching exchange rates: \(error.localizedDescription)")
                     return
                 }
                 
                 guard let exchangeRate = exchangeRate else {
-                    self.labelRate.text = "Exchange rate not available."
+                    self.showAlert(title: "Error", message: "Exchange rate not available.")
                     return
                 }
                 
@@ -95,7 +95,7 @@ class ExchangeRateViewController: UIViewController {
     /// - Parameter sender: The button triggering the conversion action.
     @IBAction func convertTapped(_ sender: UIButton) {
         guard let amountText = textFieldAmount.text, let amount = Double(amountText), let exchangeRate = currentExchangeRate else {
-            self.labelResult.text = "Invalid input or exchange rate not loaded"
+            self.showAlert(title: "Input Error", message: "Invalid input or exchange rate not loaded.")
             return
         }
         
