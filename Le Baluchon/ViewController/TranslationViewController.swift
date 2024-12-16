@@ -61,7 +61,6 @@ class TranslationViewController: UIViewController {
         self.targetLanguageCode = targetLanguageCode
     }
     
-    
     /// Action triggered by the translation button
     /// - Parameter sender: The button that triggered the action.
     @IBAction func translateButtonTapped(_ sender: UIButton) {
